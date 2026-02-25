@@ -751,16 +751,44 @@ input,select,textarea{font-family:var(--font);}
 /* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
-pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 30px;display:block;}
-.pkc-footer-grid{
+pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 36px;display:block;}
+
+/* ROW 1 — 5 link columns */
+.pkc-footer-cols{
   display:grid;
   grid-template-columns:repeat(5,1fr);
   gap:32px;
-  margin-bottom:44px;
+  padding-bottom:40px;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  margin-bottom:36px;
 }
-/* Col 1: social icons row + legal links stacked below */
-.pkc-footer-social-col{display:flex;flex-direction:column;align-items:flex-start;}
-.pkc-social-links{display:flex;flex-direction:row;gap:8px;margin-bottom:16px;}
+.pkc-footer-col{}
+.pkc-footer-col-head{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:18px;
+}
+.pkc-footer-col-head h4{
+  font-size:10px;font-weight:700;
+  color:rgba(255,255,255,0.35);
+  text-transform:uppercase;letter-spacing:2px;
+  margin:0;
+}
+.pkc-footer-col-chevron{
+  display:none;
+  color:rgba(255,255,255,0.35);
+  transition:transform 0.3s var(--ease);
+  flex-shrink:0;
+}
+.pkc-footer-col.open .pkc-footer-col-chevron{transform:rotate(180deg);}
+.pkc-footer-col-body{display:flex;flex-direction:column;gap:10px;}
+.pkc-footer-col-body a{font-size:14px;color:rgba(255,255,255,0.55);transition:color 0.2s;display:block;}
+.pkc-footer-col-body a:hover{color:#fff;}
+
+/* ROW 2 — Social icons */
+.pkc-footer-social-row{
+  display:flex;flex-direction:row;align-items:center;gap:8px;
+  margin-bottom:20px;
+}
 .pkc-social-link{
   width:36px;height:36px;border-radius:50%;
   background:rgba(255,255,255,0.07);
@@ -768,20 +796,60 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
   transition:all 0.2s;flex-shrink:0;
 }
 .pkc-social-link:hover{background:var(--accent);}
-.pkc-footer-legal-links{display:flex;flex-direction:column;gap:8px;}
-.pkc-footer-legal-links a{font-size:12px;color:rgba(255,255,255,0.35);transition:color 0.2s;display:block;}
-.pkc-footer-legal-links a:hover{color:#fff;}
-/* Regular footer columns */
-.pkc-footer-col h4{font-size:10px;font-weight:700;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:2px;margin-bottom:18px;}
-.pkc-footer-col ul{display:flex;flex-direction:column;gap:10px;}
-.pkc-footer-col ul li a{font-size:14px;color:rgba(255,255,255,0.55);transition:color 0.2s;}
-.pkc-footer-col ul li a:hover{color:#fff;}
-.pkc-footer-bottom{
-  border-top:1px solid rgba(255,255,255,0.07);
-  padding-top:22px;
-  display:flex;justify-content:flex-start;align-items:center;
+
+/* ROW 3 — Legal links */
+.pkc-footer-legal-row{
+  display:flex;flex-direction:column;align-items:flex-start;gap:8px;
+  margin-bottom:24px;
 }
-.pkc-footer-bottom p{font-size:12px;color:rgba(255,255,255,0.35);}
+.pkc-footer-legal-row a{font-size:12px;color:rgba(255,255,255,0.3);transition:color 0.2s;}
+.pkc-footer-legal-row a:hover{color:#fff;}
+
+/* ROW 4 — Copyright */
+.pkc-footer-copyright{
+  font-size:12px;color:rgba(255,255,255,0.3);
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER MOBILE ACCORDION
+═══════════════════════════════════════════ */
+@media(max-width:768px){
+  .pkc-footer-cols{
+    grid-template-columns:1fr;
+    gap:0;
+    padding-bottom:28px;
+    margin-bottom:28px;
+  }
+  .pkc-footer-col{
+    border-bottom:1px solid rgba(255,255,255,0.07);
+  }
+  .pkc-footer-col:first-child{
+    border-top:1px solid rgba(255,255,255,0.07);
+  }
+  .pkc-footer-col-head{
+    padding:14px 0;
+    margin-bottom:0;
+    cursor:pointer;
+    user-select:none;
+  }
+  .pkc-footer-col-chevron{display:block;}
+  .pkc-footer-col-body{
+    overflow:hidden;
+    max-height:0;
+    gap:0;
+    transition:max-height 0.35s var(--ease), padding 0.35s var(--ease);
+    padding-bottom:0;
+  }
+  .pkc-footer-col.open .pkc-footer-col-body{
+    max-height:300px;
+    padding-bottom:16px;
+  }
+  .pkc-footer-col-body a{
+    padding:6px 0;
+  }
+  .pkc-footer-social-row{margin-bottom:18px;}
+  .pkc-footer-legal-row{flex-direction:column;gap:10px;}
+}
 
 /* ═══════════════════════════════════════════
    BOTTOM BAR
@@ -1218,7 +1286,7 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
 ═══════════════════════════════════════════ */
 @media(max-width:1100px){
   .products-grid{grid-template-columns:repeat(3,1fr);}
-  .pkc-footer-grid{grid-template-columns:repeat(5,1fr);}
+
   .app-layout{grid-template-columns:1fr 380px;}
 }
 @media(max-width:900px){
@@ -1238,8 +1306,7 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
   .pkc-mobile-filter-bar{display:flex;}
   .products-grid{grid-template-columns:repeat(3,1fr);}
   .branches-grid{grid-template-columns:1fr;}
-  .pkc-footer-grid{grid-template-columns:repeat(3,1fr);}
-  .pkc-footer-social-col{grid-column:1/-1;}
+
   .app-section{display:none;}
   .testimonials-grid{grid-template-columns:1fr 1fr;}
 }
@@ -1251,8 +1318,7 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
   .hero-sub{font-size:15px;}
   .hero-actions{flex-direction:column;align-items:flex-start;}
   .products-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
-  .pkc-footer-grid{grid-template-columns:1fr 1fr;}
-  .pkc-footer-social-col{grid-column:1/-1;}
+
   .cart-panel{max-width:100%;}
   .fav-panel{max-width:100%;}
   .branch-card{flex-direction:column;gap:12px;}
@@ -1264,8 +1330,7 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
 }
 @media(max-width:420px){
   .products-grid{grid-template-columns:1fr 1fr;}
-  .pkc-footer-grid{grid-template-columns:1fr 1fr;}
-  .pkc-footer-social-col{grid-column:1/-1;}
+
   .hero h1{font-size:30px;}
 }
 </style>
@@ -1642,75 +1707,107 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
 <!-- FOOTER -->
 <pkc-footer id="pkc-footer">
   <div class="container">
-    <div class="pkc-footer-grid">
-      <!-- Col 1: Social Icons + Legal Links -->
-      <div class="pkc-footer-social-col">
-        <div class="pkc-social-links">
-          <a class="pkc-social-link" href="#" aria-label="Twitter">
-            <svg width="16" height="16" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
-          </a>
-          <a class="pkc-social-link" href="#" aria-label="Instagram">
-            <svg width="16" height="16" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-          </a>
-          <a class="pkc-social-link" href="#" aria-label="Facebook">
-            <svg width="16" height="16" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-          </a>
-          <a class="pkc-social-link" href="#" aria-label="YouTube">
-            <svg width="16" height="16" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="rgba(255,255,255,0.7)" stroke="none"/></svg>
-          </a>
+
+    <!-- ROW 1: 5 link columns (accordion on mobile) -->
+    <div class="pkc-footer-cols">
+
+      <div class="pkc-footer-col">
+        <div class="pkc-footer-col-head" onclick="toggleFooterCol(this)">
+          <h4>Menu</h4>
+          <svg class="pkc-footer-col-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
         </div>
-        <div class="pkc-footer-legal-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Cookie Policy</a>
+        <div class="pkc-footer-col-body">
+          <a href="#menu">Hot Coffee</a>
+          <a href="#menu">Cold Brews</a>
+          <a href="#menu">Cakes &amp; Slices</a>
+          <a href="#menu">Cupcakes</a>
+          <a href="#menu">Muffins</a>
+          <a href="#menu">Specialty Teas</a>
         </div>
       </div>
-      <!-- Col 2: Menu -->
+
       <div class="pkc-footer-col">
-        <h4>Menu</h4>
-        <ul>
-          <li><a href="#menu">Hot Coffee</a></li>
-          <li><a href="#menu">Cold Brews</a></li>
-          <li><a href="#menu">Cakes &amp; Slices</a></li>
-          <li><a href="#menu">Cupcakes</a></li>
-          <li><a href="#menu">Muffins</a></li>
-          <li><a href="#menu">Specialty Teas</a></li>
-        </ul>
+        <div class="pkc-footer-col-head" onclick="toggleFooterCol(this)">
+          <h4>Visit Us</h4>
+          <svg class="pkc-footer-col-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="pkc-footer-col-body">
+          <a href="#branches">Sandton Central</a>
+          <a href="#branches">Rosebank Village</a>
+          <a href="#">Hours &amp; Holidays</a>
+          <a href="#">Private Events</a>
+        </div>
       </div>
-      <!-- Col 3: Visit Us -->
+
       <div class="pkc-footer-col">
-        <h4>Visit Us</h4>
-        <ul>
-          <li><a href="#branches">Sandton Central</a></li>
-          <li><a href="#branches">Rosebank Village</a></li>
-          <li><a href="#">Hours &amp; Holidays</a></li>
-          <li><a href="#">Private Events</a></li>
-        </ul>
+        <div class="pkc-footer-col-head" onclick="toggleFooterCol(this)">
+          <h4>Company</h4>
+          <svg class="pkc-footer-col-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="pkc-footer-col-body">
+          <a href="#">Our Story</a>
+          <a href="#">Sustainability</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+        </div>
       </div>
-      <!-- Col 4: Company -->
+
       <div class="pkc-footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Sustainability</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
+        <div class="pkc-footer-col-head" onclick="toggleFooterCol(this)">
+          <h4>Contact</h4>
+          <svg class="pkc-footer-col-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="pkc-footer-col-body">
+          <a href="tel:+27110001234">+27 11 000 1234</a>
+          <a href="mailto:hello@phokacoffee.co.za">hello@phokacoffee.co.za</a>
+          <a href="#">WhatsApp Us</a>
+          <a href="#">Catering Enquiries</a>
+        </div>
       </div>
-      <!-- Col 5: Contact -->
+
       <div class="pkc-footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="tel:+27110001234">+27 11 000 1234</a></li>
-          <li><a href="/cdn-cgi/l/email-protection#036b666f6f6c43736b6c6862606c656566662d606c2d7962"><span class="__cf_email__" data-cfemail="e9818c858586a999818682888a868f8f8c8cc78a86c79388">[email&#160;protected]</span></a></li>
-          <li><a href="#">WhatsApp Us</a></li>
-          <li><a href="#">Catering Enquiries</a></li>
-        </ul>
+        <div class="pkc-footer-col-head" onclick="toggleFooterCol(this)">
+          <h4>Support</h4>
+          <svg class="pkc-footer-col-chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="pkc-footer-col-body">
+          <a href="#">FAQs</a>
+          <a href="#">Order Help</a>
+          <a href="#">Loyalty Rewards</a>
+          <a href="#">Gift Cards</a>
+        </div>
       </div>
+
     </div>
-    <div class="pkc-footer-bottom">
-      <p>© 2025 Phoka Coffee. All rights reserved.</p>
+
+    <!-- ROW 2: Social icons -->
+    <div class="pkc-footer-social-row">
+      <a class="pkc-social-link" href="#" aria-label="Twitter">
+        <svg width="16" height="16" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+      </a>
+      <a class="pkc-social-link" href="#" aria-label="Instagram">
+        <svg width="16" height="16" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a class="pkc-social-link" href="#" aria-label="Facebook">
+        <svg width="16" height="16" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
+      <a class="pkc-social-link" href="#" aria-label="YouTube">
+        <svg width="16" height="16" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="rgba(255,255,255,0.7)" stroke="none"/></svg>
+      </a>
     </div>
+
+    <!-- ROW 3: Legal links -->
+    <div class="pkc-footer-legal-row">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+
+    <!-- ROW 4: Copyright -->
+    <div class="pkc-footer-copyright">
+      © 2025 Phoka Coffee. All rights reserved.
+    </div>
+
   </div>
 </pkc-footer>
 
@@ -2593,6 +2690,19 @@ window.addEventListener('DOMContentLoaded',()=>{
   const track=document.getElementById('marqueeTrack');
   if(track){track.innerHTML+=track.innerHTML;}
 });
+
+/* ══════════════════════
+   FOOTER ACCORDION
+══════════════════════ */
+function toggleFooterCol(headEl){
+  if(window.innerWidth>768)return;
+  const col=headEl.closest('.pkc-footer-col');
+  const isOpen=col.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.pkc-footer-col.open').forEach(c=>c.classList.remove('open'));
+  // Open clicked if it was closed
+  if(!isOpen)col.classList.add('open');
+}
 </script>
 </pkc-page>
 </html>
