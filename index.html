@@ -69,16 +69,31 @@
 }
 html{scroll-behavior:smooth;}
 body{
+  margin:0;padding:0;
   font-family:var(--font);
   background:var(--cream);
   color:var(--text-dark);
   line-height:1.6;
-  overflow-x:hidden;
+  overflow:hidden;
   width:100%;
-  max-width:100vw;
+  height:100%;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
+html{height:100%;}
+/* Main scroll container - prevents body scroll lock issue */
+pkc-page{
+  display:block;
+  width:100%;
+  height:100%;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+}
+pkc-page.modal-open{overflow:hidden;}
+/* Custom element base display */
+pkc-header,pkc-footer,pkc-section,pkc-aside,pkc-main{display:block;}
+pkc-nav{display:flex;}
 a{text-decoration:none;color:inherit;}
 button{cursor:pointer;border:none;background:none;font-family:var(--font);}
 ul{list-style:none;}
@@ -96,7 +111,7 @@ input,select,textarea{font-family:var(--font);}
 /* ═══════════════════════════════════════════
    UTILITY
 ═══════════════════════════════════════════ */
-.container{max-width:1300px;margin:0 auto;padding:0 40px;}
+.container{max-width:1400px;margin:0 auto;padding:0 40px;}
 .btn-primary{
   display:inline-flex;align-items:center;gap:10px;
   padding:14px 32px;background:var(--accent);color:#fff;
@@ -145,14 +160,17 @@ input,select,textarea{font-family:var(--font);}
   position:fixed;top:0;left:0;width:100%;z-index:900;
   padding:18px 40px;
   display:flex;justify-content:space-between;align-items:center;
-  transition:all 0.4s var(--ease);
+  background:#fff;
+  box-shadow:0 2px 2px rgba(0,0,0,0.08);
+  transition:transform 0.4s var(--ease), padding 0.3s var(--ease), box-shadow 0.3s;
   box-sizing:border-box;
 }
 .pkc-header.scrolled{
-  background:rgba(242,247,244,0.97);
-  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   padding:13px 40px;
-  box-shadow:0 1px 0 var(--border);
+  box-shadow:0 2px 8px rgba(0,0,0,0.12);
+}
+.pkc-header.hidden{
+  transform:translateY(-100%);
 }
 .pkc-header-left{display:flex;align-items:center;gap:40px;min-width:0;flex:1;}
 .pkc-logo-wrap{display:flex;align-items:center;gap:11px;flex-shrink:0;}
@@ -186,20 +204,19 @@ input,select,textarea{font-family:var(--font);}
    HERO
 ═══════════════════════════════════════════ */
 .hero{
-  min-height:100vh;position:relative;
+  min-height:80vh;position:relative;
   display:flex;align-items:center;
   overflow:hidden;background:var(--cream);
 }
 .hero-bg{
   position:absolute;top:0;right:0;
   width:52%;height:100%;
-  border-radius:0 0 0 80px;
   overflow:hidden;
 }
 .hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);}
 .hero-bg::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(to right,var(--cream) 0%,transparent 30%);
+  
 }
 .hero-content{
   position:relative;z-index:2;
@@ -207,7 +224,7 @@ input,select,textarea{font-family:var(--font);}
   width:100%;
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:40px;
+  gap:400px;
   align-items:center;
 }
 .hero-text-col{
@@ -216,15 +233,8 @@ input,select,textarea{font-family:var(--font);}
 .hero-img-col{
   display:none; /* hidden by default, shown on desktop via the hero-bg instead */
 }
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--choco-50);border:1px solid var(--choco-100);
-  padding:7px 16px;border-radius:50px;
-  font-size:12px;font-weight:700;color:var(--accent);
-  margin-bottom:26px;letter-spacing:0.3px;
-}
 .hero h1{
-  font-size:clamp(40px,5.5vw,76px);
+  font-size:clamp(40px,5.5vw,56px);
   font-weight:500;line-height:1.01;
   color:var(--text-dark);letter-spacing:-2.5px;
   margin-bottom:22px;
@@ -244,8 +254,6 @@ input,select,textarea{font-family:var(--font);}
   display:flex;flex-direction:column;align-items:center;gap:6px;
   color:var(--text-muted);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;
 }
-.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--choco-200),transparent);animation:scrollPulse 2s ease-in-out infinite;}
-@keyframes scrollPulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
 
 /* ═══════════════════════════════════════════
    MARQUEE BANNER
@@ -264,12 +272,12 @@ input,select,textarea{font-family:var(--font);}
 /* ═══════════════════════════════════════════
    MENU SECTION — SIDEBAR LAYOUT
 ═══════════════════════════════════════════ */
-.menu-section{padding:96px 0;background:var(--off-white);}
+.menu-section{padding:96px 0;background:#fff;}
 .menu-header-top{margin-bottom:52px;}
 .menu-layout{
   display:grid;
   grid-template-columns:220px 1fr;
-  gap:48px;
+  gap:70px;
   align-items:start;
 }
 /* SIDEBAR */
@@ -283,18 +291,17 @@ input,select,textarea{font-family:var(--font);}
 .sidebar-filters{display:flex;flex-direction:column;gap:2px;}
 .sidebar-filter{
   display:flex;align-items:center;gap:12px;
-  padding:11px 14px;border-radius:var(--radius-sm);
-  font-size:14px;font-weight:500;color:var(--text-light);
-  transition:all 0.2s;cursor:pointer;text-align:left;width:100%;
+  padding:11px 14px;border-radius:50px;
+  font-size:14px;font-weight:500;color:#000;
+  ;cursor:pointer;text-align:left;width:100%;
   border:1px solid transparent;
 }
 .sidebar-filter svg{flex-shrink:0;opacity:0.55;transition:opacity 0.2s;}
-.sidebar-filter:hover{background:#fff;color:var(--text-dark);}
+.sidebar-filter:hover{background:var(--choco-100);color:var(--text-dark);}
 .sidebar-filter:hover svg{opacity:0.8;}
 .sidebar-filter.active{
-  background:#fff;color:var(--accent);font-weight:700;
-  border-color:var(--choco-100);
-  box-shadow:0 2px 12px rgba(107,52,16,0.07);
+  color:#000;font-weight:700;
+  border-color: var(--accent-dark);
 }
 .sidebar-filter.active svg{opacity:1;stroke:var(--accent);}
 .sidebar-count{
@@ -372,8 +379,8 @@ input,select,textarea{font-family:var(--font);}
 .product-card:hover .quick-add{transform:translateY(0);opacity:1;}
 .quick-add:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
 .product-info{padding:14px 0;}
-.product-name{font-size:14px;font-weight:700;color:var(--text-dark);margin-bottom:3px;line-height:1.3;}
-.product-desc{font-size:12px;color:var(--text-muted);margin-bottom:10px;line-height:1.5;}
+.product-name{font-size:16px;font-weight:700;color:var(--text-dark);margin-bottom:3px;line-height:1.3;}
+.product-desc{font-size:14px;color:#00000094;margin-bottom:10px;line-height:1.5;}
 .product-footer{display:flex;justify-content:space-between;align-items:center;}
 .product-price{font-size:17px;font-weight:800;color:var(--accent);}
 .product-price span{font-size:11px;font-weight:400;color:var(--text-muted);}
@@ -717,98 +724,64 @@ input,select,textarea{font-family:var(--font);}
   padding-top:20px;
 }
 .phone-mockup{
-  position:relative;width:260px;flex-shrink:0;
-  filter:drop-shadow(0 40px 60px rgba(0,0,0,0.5));
+  position:relative;width:300px;flex-shrink:0;
+  filter:drop-shadow(0 40px 80px rgba(0,0,0,0.65));
 }
 .phone-svg-outer{
-  width:100%;
+  width:100%;display:block;
 }
 .phone-screen-content{
   position:absolute;
-  top:5.5%;left:7.5%;
-  width:85%;height:89%;
-  border-radius:36px;
-  overflow:hidden;background:var(--cream);
+  top:3.8%;left:6.2%;
+  width:87.6%;height:92%;
+  border-radius:40px;
+  overflow:hidden;
+  background:#0a0a0a;
 }
-.phone-screen-img{width:100%;height:100%;object-fit:cover;}
-.phone-screen-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(250,247,242,0.0) 0%,rgba(250,247,242,0.95) 100%);
-  display:flex;flex-direction:column;justify-content:flex-end;padding:16px;
-}
-.phone-ui-bar{
-  background:#fff;border-radius:12px;padding:10px 12px;
-  box-shadow:0 4px 20px rgba(107,52,16,0.12);
-}
-.phone-ui-title{font-size:11px;font-weight:800;color:var(--text-dark);}
-.phone-ui-sub{font-size:9px;color:var(--text-muted);margin-bottom:6px;}
-.phone-ui-btn{
-  background:var(--accent);color:#fff;
-  border-radius:50px;padding:6px 12px;
-  font-size:10px;font-weight:700;display:inline-block;
+.phone-screen-img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
 }
 @media(max-width:1000px){.app-section{display:none;}}
 
-/* ═══════════════════════════════════════════
-   NEWSLETTER
-═══════════════════════════════════════════ */
-.newsletter-section{padding:76px 0;background:var(--accent);}
-.newsletter-inner{text-align:center;max-width:540px;margin:0 auto;}
-.newsletter-inner .section-label{color:rgba(255,255,255,0.55);}
-.newsletter-inner .section-label::before{background:rgba(255,255,255,0.4);}
-.newsletter-inner h2{font-size:clamp(26px,3.5vw,40px);font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-0.8px;}
-.newsletter-inner p{font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:28px;}
-.newsletter-form{display:flex;gap:10px;max-width:420px;margin:0 auto;}
-.newsletter-input{
-  flex:1;padding:13px 18px;border-radius:50px;border:none;
-  font-size:13px;font-family:var(--font);outline:none;
-  background:rgba(255,255,255,0.12);color:#fff;
-}
-.newsletter-input::placeholder{color:rgba(255,255,255,0.45);}
-.newsletter-input:focus{background:rgba(255,255,255,0.2);}
-.newsletter-submit{
-  padding:13px 24px;background:#fff;color:var(--accent);
-  border-radius:50px;font-size:13px;font-weight:700;
-  transition:all 0.2s;white-space:nowrap;
-}
-.newsletter-submit:hover{transform:scale(1.02);}
+
 
 /* ═══════════════════════════════════════════
    FOOTER
 ═══════════════════════════════════════════ */
-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 30px;}
+pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 30px;display:block;}
 .pkc-footer-grid{
   display:grid;
   grid-template-columns:repeat(5,1fr);
   gap:32px;
   margin-bottom:44px;
 }
-/* First column: social + legal */
-.pkc-footer-social-col{}
-.pkc-footer-brand-name{color:#fff;font-size:18px;font-weight:800;display:block;margin-bottom:18px;letter-spacing:-0.4px;}
-.pkc-footer-brand-name span{color:var(--choco-200);}
-.pkc-social-links{display:flex;gap:8px;margin-bottom:20px;}
+/* Col 1: social icons row + legal links stacked below */
+.pkc-footer-social-col{display:flex;flex-direction:column;align-items:flex-start;}
+.pkc-social-links{display:flex;flex-direction:row;gap:8px;margin-bottom:16px;}
 .pkc-social-link{
   width:36px;height:36px;border-radius:50%;
   background:rgba(255,255,255,0.07);
   display:flex;align-items:center;justify-content:center;
-  transition:all 0.2s;
+  transition:all 0.2s;flex-shrink:0;
 }
 .pkc-social-link:hover{background:var(--accent);}
-.pkc-footer-legal-links{display:flex;flex-direction:column;gap:7px;margin-bottom:20px;}
-.pkc-footer-legal-links a{font-size:12px;color:rgba(255,255,255,0.35);transition:color 0.2s;}
+.pkc-footer-legal-links{display:flex;flex-direction:column;gap:8px;}
+.pkc-footer-legal-links a{font-size:12px;color:rgba(255,255,255,0.35);transition:color 0.2s;display:block;}
 .pkc-footer-legal-links a:hover{color:#fff;}
 /* Regular footer columns */
-.pkc-footer-col h4{font-size:11px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:18px;}
-.pkc-footer-col ul{display:flex;flex-direction:column;gap:9px;}
-.pkc-footer-col ul a{font-size:13px;color:rgba(255,255,255,0.45);transition:color 0.2s;}
-.pkc-footer-col ul a:hover{color:#fff;}
+.pkc-footer-col h4{font-size:10px;font-weight:700;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:2px;margin-bottom:18px;}
+.pkc-footer-col ul{display:flex;flex-direction:column;gap:10px;}
+.pkc-footer-col ul li a{font-size:14px;color:rgba(255,255,255,0.55);transition:color 0.2s;}
+.pkc-footer-col ul li a:hover{color:#fff;}
 .pkc-footer-bottom{
   border-top:1px solid rgba(255,255,255,0.07);
   padding-top:22px;
   display:flex;justify-content:flex-start;align-items:center;
 }
-.pkc-footer-bottom p{font-size:12px;}
+.pkc-footer-bottom p{font-size:12px;color:rgba(255,255,255,0.35);}
 
 /* ═══════════════════════════════════════════
    BOTTOM BAR
@@ -816,34 +789,33 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
 .page-bottom-pad{height:var(--bottom-bar-h);}
 .bottom-bar{
   position:fixed;bottom:0;left:0;right:0;z-index:800;
-  background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border-top:1px solid var(--border);
+  background:#0D2E1D;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  
   height:var(--bottom-bar-h);
   display:flex;align-items:center;justify-content:center;
   padding:0 20px;
-  box-shadow:0 -4px 24px rgba(26,107,60,0.07);
   box-sizing:border-box;
   width:100%;
 }
 .bottom-bar-inner{
   display:flex;align-items:center;justify-content:space-between;
-  width:100%;max-width:960px;
+  width:100%;max-width:1300px;
   gap:16px;
 }
 .bottom-location{
   display:flex;align-items:center;gap:10px;cursor:pointer;
   padding:8px 12px;border-radius:12px;transition:background 0.2s;
-  flex:1;min-width:0;
+  flex:1;min-width:0; width: fit-content; 
 }
-.bottom-location:hover{background:var(--choco-50);}
+.bottom-location:hover{background:#e8f0eb1f;}
 .location-pin-icon{
   width:36px;height:36px;border-radius:10px;
   background:var(--choco-50);border:1px solid var(--choco-100);
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
-.location-info{min-width:0;}
+.location-info{min-width:0; border-bottom: 1px solid #fff;}
 .location-label{font-size:10px;color:var(--text-muted);font-weight:700;letter-spacing:0.8px;text-transform:uppercase;display:block;}
-.location-name{font-size:14px;font-weight:700;color:var(--text-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:4px;}
+.location-name{font-size:14px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:4px;}
 .loc-chevron{flex-shrink:0;}
 .bottom-divider{width:1px;height:32px;background:var(--border);flex-shrink:0;}
 .bottom-cart-btn{
@@ -1082,11 +1054,11 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
 }
 .pkc-header-contact-item{
   display:flex;align-items:center;gap:6px;
-  font-size:12px;color:var(--text-muted);font-weight:500;
+  font-size:13px;color:#00000094;font-weight:500;
   white-space:nowrap;
 }
-.pkc-header-contact-item svg{flex-shrink:0;color:var(--accent);}
-.pkc-header-contact-item a{color:var(--text-muted);transition:color 0.2s;}
+.pkc-header-contact-item svg{flex-shrink:0;color:var(--accent); border: 1px solid #000; border-radius: 50px;}
+.pkc-header-contact-item a{color:#071A10;}
 .pkc-header-contact-item a:hover{color:var(--accent);}
 @media(max-width:900px){.pkc-header-contact{display:none;}}
 
@@ -1246,7 +1218,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
 ═══════════════════════════════════════════ */
 @media(max-width:1100px){
   .products-grid{grid-template-columns:repeat(3,1fr);}
-  .pkc-footer-grid{grid-template-columns:1fr 1fr 1fr;}
+  .pkc-footer-grid{grid-template-columns:repeat(5,1fr);}
   .app-layout{grid-template-columns:1fr 380px;}
 }
 @media(max-width:900px){
@@ -1266,7 +1238,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
   .pkc-mobile-filter-bar{display:flex;}
   .products-grid{grid-template-columns:repeat(3,1fr);}
   .branches-grid{grid-template-columns:1fr;}
-  .pkc-footer-grid{grid-template-columns:1fr 1fr 1fr;}
+  .pkc-footer-grid{grid-template-columns:repeat(3,1fr);}
+  .pkc-footer-social-col{grid-column:1/-1;}
   .app-section{display:none;}
   .testimonials-grid{grid-template-columns:1fr 1fr;}
 }
@@ -1279,9 +1252,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
   .hero-actions{flex-direction:column;align-items:flex-start;}
   .products-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
   .pkc-footer-grid{grid-template-columns:1fr 1fr;}
-  .pkc-footer-grid{grid-template-columns:1fr 1fr;}
-  .newsletter-form{flex-direction:column;}
-  .newsletter-submit{text-align:center;}
+  .pkc-footer-social-col{grid-column:1/-1;}
   .cart-panel{max-width:100%;}
   .fav-panel{max-width:100%;}
   .branch-card{flex-direction:column;gap:12px;}
@@ -1293,25 +1264,27 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
 }
 @media(max-width:420px){
   .products-grid{grid-template-columns:1fr 1fr;}
+  .pkc-footer-grid{grid-template-columns:1fr 1fr;}
+  .pkc-footer-social-col{grid-column:1/-1;}
   .hero h1{font-size:30px;}
 }
 </style>
 </head>
-<body>
+<pkc-page id="pkc-page">
 
 <!-- ████ HEADER ████ -->
-<header class="pkc-header" id="pkc-main-header">
+<pkc-header class="pkc-header" id="pkc-main-header">
   <div class="pkc-header-left">
     <div class="pkc-logo-wrap">
       <div class="pkc-logo-icon">
         <img src="phoka.jpg" alt="Phoka Coffee Logo" style="height: 35px;">
       </div>
     </div>
-    <nav class="pkc-nav-links">
+    <pkc-nav class="pkc-nav-links">
       <a href="#menu">Menu</a>
       <a href="#experience">Our Story</a>
       <a href="#branches">Branches</a>
-    </nav>
+    </pkc-nav>
   </div>
   <div class="pkc-header-right">
     <!-- Contact info (desktop only) -->
@@ -1322,7 +1295,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
       </div>
       <div class="pkc-header-contact-item">
         <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        <a href="mailto:hello@phokacoffee.co.za">hello@phokacoffee.co.za</a>
+        <a href="/cdn-cgi/l/email-protection#432b262f2f2c03332b2c2822202c252526266d202c6d3922"><span class="__cf_email__" data-cfemail="5b333e3737341b2b3334303a38343d3d3e3e75383475213a">[email&#160;protected]</span></a>
       </div>
     </div>
     <!-- Favourites -->
@@ -1349,19 +1322,19 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
       </svg>
     </button>
   </div>
-</header>
+</pkc-header>
 
 <!-- ████ MOBILE NAV ████ -->
 <div class="pkc-mobile-nav" id="pkc-mobile-nav">
   <button class="pkc-mobile-nav-close" onclick="toggleMobileNav()">
     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 16 16"><path d="M2 2l12 12M14 2L2 14"/></svg>
   </button>
-  <nav class="pkc-mobile-nav-links">
+  <pkc-nav class="pkc-mobile-nav-links">
     <a href="#menu" onclick="toggleMobileNav()">Menu <span style="opacity:0.4;">›</span></a>
     <a href="#experience" onclick="toggleMobileNav()">Our Story <span style="opacity:0.4;">›</span></a>
     <a href="#branches" onclick="toggleMobileNav()">Branches <span style="opacity:0.4;">›</span></a>
     <a href="javascript:void(0)" onclick="toggleMobileNav();openCart()">Cart <span style="opacity:0.4;">›</span></a>
-  </nav>
+  </pkc-nav>
   <div class="mobile-nav-contact">
     <div class="mobile-nav-contact-item">
       <svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
@@ -1369,7 +1342,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
     </div>
     <div class="mobile-nav-contact-item">
       <svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      <a href="mailto:hello@phokacoffee.co.za">hello@phokacoffee.co.za</a>
+      <a href="/cdn-cgi/l/email-protection#b7dfd2dbdbd8f7c7dfd8dcd6d4d8d1d1d2d299d4d899cdd6"><span class="__cf_email__" data-cfemail="3f575a5353507f4f5750545e5c5059595a5a115c5011455e">[email&#160;protected]</span></a>
     </div>
   </div>
   <div class="pkc-mobile-nav-footer">
@@ -1378,19 +1351,16 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
 </div>
 
 <!-- ████ HERO ████ -->
-<section class="hero" id="home">
+<pkc-section class="hero" id="home">
   <div class="hero-bg">
     <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1400&q=90" alt="Coffee atmosphere">
   </div>
   <div class="container">
     <div class="hero-content">
       <div class="hero-text-col">
-      <div class="hero-badge reveal">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        Freshly Brewed Daily
-      </div>
+      
       <h1 class="reveal" data-delay="1">Coffee that<br><em>moves</em> your soul</h1>
-      <p class="hero-sub reveal" data-delay="2">Premium single-origin brews, handcrafted pastries, and a space that feels like home. Two branches across Johannesburg.</p>
+      <p class="hero-sub reveal" data-delay="2">Premium single-origin brews, handcrafted pastries, and a space that feels like home.</p>
       <div class="hero-actions reveal" data-delay="3">
         <a href="#menu" class="btn-primary">
           <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
@@ -1401,11 +1371,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
       </div>
     </div>
   </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
-</section>
+</pkc-section>
 
 <!-- MARQUEE -->
 <div class="marquee-wrap">
@@ -1431,7 +1397,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
 
 
 <!-- ████ MENU SECTION ████ -->
-<section class="menu-section" id="menu">
+<pkc-section class="menu-section" id="menu">
   <!-- Mobile sticky filter bar -->
   <div class="pkc-mobile-filter-bar" id="pkc-mobile-filter-bar">
     <button class="pkc-mobile-filter-tab active" onclick="filterMenu('all',this)">All</button>
@@ -1449,7 +1415,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
     </div>
     <div class="menu-layout">
       <!-- SIDEBAR -->
-      <aside class="menu-sidebar">
+      <pkc-aside class="menu-sidebar">
         <div class="sidebar-label">Categories</div>
         <div class="sidebar-filters" id="sidebarFilters">
           <button class="sidebar-filter active" data-cat="all" onclick="filterMenu('all',this)">
@@ -1478,18 +1444,18 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
             <span class="sidebar-count" id="sc-tea">4</span>
           </button>
         </div>
-      </aside>
+      </pkc-aside>
 
       <!-- PRODUCTS -->
-      <main class="menu-content" id="menuContent">
+      <pkc-main class="menu-content" id="menuContent">
         <!-- Rendered by JS -->
-      </main>
+      </pkc-main>
     </div>
   </div>
-</section>
+</pkc-section>
 
 <!-- ████ VIDEO SECTION ████ -->
-<section class="video-section" id="experience">
+<pkc-section class="video-section" id="experience">
   <div class="container">
     <div class="video-layout">
       <div class="video-frame reveal-left" onclick="openVideoModal()">
@@ -1544,7 +1510,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
       </div>
     </div>
   </div>
-</section>
+</pkc-section>
 
 <!-- VIDEO MODAL -->
 <div class="video-modal-overlay" id="videoModalOverlay" onclick="closeVideoOnBg(event)">
@@ -1560,7 +1526,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
 </div>
 
 <!-- ████ BRANCHES ████ -->
-<section class="branches-section" id="branches">
+<pkc-section class="branches-section" id="branches">
   <div class="container">
     <div class="reveal" style="text-align:center;">
       <div class="section-label" style="justify-content:center;">Find Us</div>
@@ -1604,10 +1570,10 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
       </div>
     </div>
   </div>
-</section>
+</pkc-section>
 
 <!-- ████ APP DOWNLOAD (DESKTOP ONLY) ████ -->
-<section class="app-section">
+<pkc-section class="app-section">
   <div class="container">
     <div class="app-layout">
       <div class="app-text reveal-left">
@@ -1654,68 +1620,31 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
       <!-- PHONE MOCKUP -->
       <div class="phone-mockup-wrap reveal-right">
         <div class="phone-mockup">
-          <!-- SVG phone frame -->
-          <svg class="phone-svg-outer" viewBox="0 0 260 530" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="258" height="528" rx="42" fill="#1A0C02" stroke="#3D2010" stroke-width="2"/>
-            <rect x="8" y="8" width="244" height="514" rx="36" fill="#2C1505"/>
-            <!-- Screen bezel -->
-            <rect x="14" y="14" width="232" height="502" rx="30" fill="#FAF7F2"/>
-            <!-- Notch / Dynamic Island -->
-            <rect x="95" y="20" width="70" height="22" rx="11" fill="#1A0C02"/>
-            <!-- Side buttons -->
-            <rect x="-2" y="130" width="3" height="40" rx="1.5" fill="#3D2010"/>
-            <rect x="-2" y="180" width="3" height="60" rx="1.5" fill="#3D2010"/>
-            <rect x="259" y="155" width="3" height="70" rx="1.5" fill="#3D2010"/>
+          <svg class="phone-svg-outer" viewBox="0 0 320 650" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="318" height="648" rx="52" fill="#111" stroke="#2a2a2a" stroke-width="2"/>
+            <rect x="8" y="8" width="304" height="634" rx="46" fill="#1a1a1a"/>
+            <rect x="18" y="18" width="284" height="614" rx="40" fill="#080808"/>
+            <rect x="115" y="25" width="90" height="28" rx="14" fill="#000"/>
+            <rect x="-3" y="135" width="5" height="50" rx="2.5" fill="#2a2a2a"/>
+            <rect x="-3" y="200" width="5" height="80" rx="2.5" fill="#2a2a2a"/>
+            <rect x="318" y="185" width="5" height="90" rx="2.5" fill="#2a2a2a"/>
           </svg>
-          <!-- Screen content -->
           <div class="phone-screen-content">
-            <img class="phone-screen-img" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=85" alt="App preview">
-            <div class="phone-screen-overlay">
-              <div style="margin-bottom:10px;">
-                <div style="font-size:9px;font-weight:700;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Today's Special</div>
-                <div style="font-size:13px;font-weight:800;color:var(--text-dark);">Ethiopian Pour Over</div>
-                <div style="font-size:10px;color:var(--text-light);">Single origin · Light roast</div>
-              </div>
-              <div class="phone-ui-bar">
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                  <div>
-                    <div class="phone-ui-title">Add to Order</div>
-                    <div class="phone-ui-sub">Ready in ~12 min</div>
-                  </div>
-                  <div style="font-size:13px;font-weight:800;color:var(--accent);">R70</div>
-                </div>
-                <div class="phone-ui-btn">Order Now</div>
-              </div>
-            </div>
+            <img class="phone-screen-img" src="" alt="App screenshot placeholder">
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</pkc-section>
 
-<!-- NEWSLETTER -->
-<section class="newsletter-section">
-  <div class="container">
-    <div class="newsletter-inner reveal">
-      <div class="section-label">Stay Updated</div>
-      <h2>Weekly specials &amp; new menu drops</h2>
-      <p>Join 12,000+ coffee lovers who get early access to seasonal menus and exclusive deals.</p>
-      <div class="newsletter-form">
-        <input type="email" class="newsletter-input" placeholder="your@email.com">
-        <button class="newsletter-submit" onclick="showToast('You\'re in! Welcome to the Phoka family.')">Subscribe</button>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- FOOTER -->
-<footer id="pkc-footer">
+<pkc-footer id="pkc-footer">
   <div class="container">
     <div class="pkc-footer-grid">
-      <!-- Col 1: Social + Legal -->
+      <!-- Col 1: Social Icons + Legal Links -->
       <div class="pkc-footer-social-col">
-        <span class="pkc-footer-brand-name">Phoka <span>Coffee</span></span>
         <div class="pkc-social-links">
           <a class="pkc-social-link" href="#" aria-label="Twitter">
             <svg width="16" height="16" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
@@ -1773,7 +1702,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
         <h4>Contact</h4>
         <ul>
           <li><a href="tel:+27110001234">+27 11 000 1234</a></li>
-          <li><a href="mailto:hello@phokacoffee.co.za">hello@phokacoffee.co.za</a></li>
+          <li><a href="/cdn-cgi/l/email-protection#036b666f6f6c43736b6c6862606c656566662d606c2d7962"><span class="__cf_email__" data-cfemail="e9818c858586a999818682888a868f8f8c8cc78a86c79388">[email&#160;protected]</span></a></li>
           <li><a href="#">WhatsApp Us</a></li>
           <li><a href="#">Catering Enquiries</a></li>
         </ul>
@@ -1783,7 +1712,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
       <p>© 2025 Phoka Coffee. All rights reserved.</p>
     </div>
   </div>
-</footer>
+</pkc-footer>
 
 <div class="page-bottom-pad"></div>
 
@@ -2139,12 +2068,12 @@ footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px 0 3
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ══════════════════════
    DATA
 ══════════════════════ */
 const CATS=[
-  {id:'coffee',label:'Hot Coffee',icon:`<svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 3h14M6 3v2a6 6 0 0012 0V3"/><path d="M4 11h16M7 21h10M9 11v6M15 11v6"/></svg>`},
+  {id:'coffee',label:'Hot Coffee'},
   {id:'cold',label:'Cold Brew & Iced',icon:`<svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 6h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2z"/></svg>`},
   {id:'cake',label:'Signature Cakes',icon:`<svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M20 21v-8a2 2 0 00-2-2H6a2 2 0 00-2 2v8"/><path d="M4 21h16M12 3v6M8 7l4-4 4 4"/></svg>`},
   {id:'pastry',label:'Cupcakes & Muffins',icon:`<svg width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M12 2a5 5 0 015 5v1H7V7a5 5 0 015-5z"/><rect x="4" y="8" width="16" height="12" rx="2"/></svg>`},
@@ -2153,14 +2082,14 @@ const CATS=[
 
 const products=[
   {id:1,name:"Phoka Signature Espresso",cat:"coffee",price:45,desc:"Rich double shot with chocolate undertones",img:"https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=600&q=85",badge:"popular",coffee:true},
-  {id:2,name:"Caramel Cloud Latte",cat:"coffee",price:65,desc:"Smooth espresso with caramel & steamed oat milk",img:"https://images.unsplash.com/photo-1485808191679-5f86510bd652?auto=format&fit=crop&w=600&q=85",badge:"popular",coffee:true},
+  {id:2,name:"Caramel Cloud Latte",cat:"coffee",price:65,desc:"Smooth espresso with caramel & steamed oat milk",img:"https://images.unsplash.com/photo-1559496417-e7f25cb247f3?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",badge:"popular",coffee:true},
   {id:3,name:"Ethiopian Pour Over",cat:"coffee",price:70,desc:"Single origin, light roast, citrus & floral notes",img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=85",coffee:true},
   {id:4,name:"Vanilla Bean Cappuccino",cat:"coffee",price:60,desc:"Classic cappuccino with Madagascar vanilla",img:"https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=85",coffee:true},
   {id:5,name:"Flat White",cat:"coffee",price:55,desc:"Velvety micro-foam espresso, Australian style",img:"https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=85",coffee:true},
   {id:6,name:"Cortado",cat:"coffee",price:50,desc:"Equal parts espresso & warm milk, balanced",img:"https://images.unsplash.com/photo-1559496417-e7f25cb247f3?auto=format&fit=crop&w=600&q=85",coffee:true},
   {id:7,name:"Cold Brew Original",cat:"cold",price:65,desc:"12-hour steeped, smooth & naturally sweet",img:"https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=600&q=85",badge:"popular"},
-  {id:8,name:"Nitro Cold Brew",cat:"cold",price:75,desc:"Silky nitrogen-infused cold brew on tap",img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=85",badge:"new"},
-  {id:9,name:"Iced Brown Sugar Oat Latte",cat:"cold",price:72,desc:"Espresso over ice, oat milk & brown sugar syrup",img:"https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=600&q=85"},
+  {id:8,name:"Nitro Cold Brew",cat:"cold",price:75,desc:"Silky nitrogen-infused cold brew on tap",img:"https://images.unsplash.com/photo-1634462180358-b5949e4a0028?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",badge:"new"},
+  {id:9,name:"Iced Brown Sugar Oat Latte",cat:"cold",price:72,desc:"Espresso over ice, oat milk & brown sugar syrup",img:"https://images.unsplash.com/photo-1630248904474-a7927610a5db?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
   {id:10,name:"Mango Cold Brew Tonic",cat:"cold",price:70,desc:"Cold brew + mango + sparkling tonic",img:"https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=85",badge:"new"},
   {id:11,name:"Triple Chocolate Cake",cat:"cake",price:180,desc:"Moist dark chocolate sponge, ganache frosting",img:"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=85",badge:"popular"},
   {id:12,name:"Red Velvet Beauty",cat:"cake",price:165,desc:"Cream cheese frosting, crimson velvet layers",img:"https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=600&q=85"},
@@ -2168,12 +2097,12 @@ const products=[
   {id:14,name:"Carrot & Walnut Cake",cat:"cake",price:155,desc:"Spiced carrot cake, walnuts & cream cheese",img:"https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=600&q=85"},
   {id:15,name:"Salted Caramel Cupcake",cat:"pastry",price:55,desc:"Butter cupcake, salted caramel buttercream",img:"https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=600&q=85",badge:"popular"},
   {id:16,name:"Dark Choc Fudge Cupcake",cat:"pastry",price:55,desc:"Rich fudge centre, chocolate ganache top",img:"https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=600&q=85"},
-  {id:17,name:"Blueberry Streusel Muffin",cat:"pastry",price:48,desc:"Juicy blueberries, crunchy streusel topping",img:"https://images.unsplash.com/photo-1604882355280-6ee97a5c5c4e?auto=format&fit=crop&w=600&q=85",badge:"new"},
+  {id:17,name:"Blueberry Streusel Muffin",cat:"pastry",price:48,desc:"Juicy blueberries, crunchy streusel topping",img:"https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",badge:"new"},
   {id:18,name:"Matcha White Choc Muffin",cat:"pastry",price:52,desc:"Japanese matcha with white chocolate chips",img:"https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=600&q=85"},
   {id:19,name:"Masala Chai Latte",cat:"tea",price:58,desc:"Spiced chai, steamed oat milk, honey drizzle",img:"https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?auto=format&fit=crop&w=600&q=85",badge:"popular"},
   {id:20,name:"Ceremonial Matcha Latte",cat:"tea",price:72,desc:"Japanese grade matcha, frothed oat milk",img:"https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=85",badge:"new"},
-  {id:21,name:"Moroccan Mint Tea",cat:"tea",price:42,desc:"Loose leaf mint, brewed in a traditional pot",img:"https://images.unsplash.com/photo-1547637589-f54c34f5d7a4?auto=format&fit=crop&w=600&q=85"},
-  {id:22,name:"Hibiscus & Rose Iced Tea",cat:"tea",price:50,desc:"Floral & tart, served chilled with rose petals",img:"https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=600&q=85"},
+  {id:21,name:"Moroccan Mint Tea",cat:"tea",price:42,desc:"Loose leaf mint, brewed in a traditional pot",img:"https://images.unsplash.com/photo-1579992357154-faf4bde95b3d?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
+  {id:22,name:"Hibiscus & Rose Iced Tea",cat:"tea",price:50,desc:"Floral & tart, served chilled with rose petals",img:"https://images.unsplash.com/photo-1579992357036-b19b591b7519?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
 ];
 
 /* ══════════════════════
@@ -2205,7 +2134,7 @@ function renderMenu(){
     html+=`
       <div class="category-group" id="cat-${catId}">
         <div class="category-group-header">
-          <div class="cat-group-icon">${catInfo.icon}</div>
+          
           <div class="cat-group-title">${catInfo.label}</div>
           <div class="cat-group-count">${items.length} items</div>
         </div>
@@ -2286,11 +2215,11 @@ function toggleFavPanel(){
 function openFavPanel(){
   renderFavPanel();
   document.getElementById('favOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
+  document.getElementById('pkc-page').classList.add('modal-open');
 }
 function closeFavPanel(){
   document.getElementById('favOverlay').classList.remove('open');
-  document.body.style.overflow='';
+  document.getElementById('pkc-page').classList.remove('modal-open');
 }
 function closeFavPanelOnBg(e){if(e.target.id==='favOverlay')closeFavPanel();}
 function renderFavPanel(){
@@ -2352,11 +2281,11 @@ function openOrderModal(id){
   document.getElementById('orderModalScroll').scrollTop=0;
   updateAddBtn();
   document.getElementById('orderOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
+  document.getElementById('pkc-page').classList.add('modal-open');
 }
 function closeOrderModal(){
   document.getElementById('orderOverlay').classList.remove('open');
-  document.body.style.overflow='';
+  document.getElementById('pkc-page').classList.remove('modal-open');
 }
 function closeOnBg(e,id){if(e.target.id===id)closeOrderModal();}
 
@@ -2428,11 +2357,11 @@ function addToCart(){
 ══════════════════════ */
 function openCart(){
   document.getElementById('cartOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
+  document.getElementById('pkc-page').classList.add('modal-open');
 }
 function closeCart(){
   document.getElementById('cartOverlay').classList.remove('open');
-  document.body.style.overflow='';
+  document.getElementById('pkc-page').classList.remove('modal-open');
 }
 function closeOnBg2(e,id){if(e.target.id===id)closeCart();}
 
@@ -2505,11 +2434,11 @@ function openCheckout(){
   closeCart();
   document.getElementById('checkoutBranch').textContent=selectedBranch;
   document.getElementById('checkoutOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
+  document.getElementById('pkc-page').classList.add('modal-open');
 }
 function closeCheckout(){
   document.getElementById('checkoutOverlay').classList.remove('open');
-  document.body.style.overflow='';
+  document.getElementById('pkc-page').classList.remove('modal-open');
 }
 function closeOnBg3(e,id){if(e.target.id===id)closeCheckout();}
 function selectPay(el){
@@ -2571,13 +2500,13 @@ function confirmBranchSelect(name,activeId,inactiveId){
 ══════════════════════ */
 function openVideoModal(){
   document.getElementById('videoModalOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
+  document.getElementById('pkc-page').classList.add('modal-open');
   // Real coffee shop video from YouTube
   document.getElementById('videoIframe').src='https://www.youtube.com/embed/mNBTFDsEFi0?autoplay=1&rel=0';
 }
 function closeVideoModal(){
   document.getElementById('videoModalOverlay').classList.remove('open');
-  document.body.style.overflow='';
+  document.getElementById('pkc-page').classList.remove('modal-open');
   document.getElementById('videoIframe').src='';
 }
 function closeVideoOnBg(e){if(e.target.id==='videoModalOverlay')closeVideoModal();}
@@ -2592,17 +2521,27 @@ function toggleMobileNav(){
 /* ══════════════════════
    HEADER SCROLL
 ══════════════════════ */
+let lastScrollY=0;
 window.addEventListener('scroll',()=>{
-  const scrolled=window.scrollY>60;
-  document.getElementById('pkc-main-header').classList.toggle('scrolled',scrolled);
+  const scrollY=window.scrollY;
+  const header=document.getElementById('pkc-main-header');
+  // Hide on scroll down, show on scroll up
+  if(scrollY>lastScrollY&&scrollY>80){
+    header.classList.add('hidden');
+  }else{
+    header.classList.remove('hidden');
+  }
+  lastScrollY=scrollY;
+  // Scrolled shadow state
+  header.classList.toggle('scrolled',scrollY>60);
   // Update mobile filter bar top to match header height
   const bar=document.getElementById('pkc-mobile-filter-bar');
   if(bar&&window.innerWidth<=900){
-    const headerH=document.getElementById('pkc-main-header').offsetHeight;
+    const headerH=header.offsetHeight;
     bar.style.top=headerH+'px';
   }
   // Track active category on scroll (mobile)
-  if(window.innerWidth<=900 && currentFilter==='all'){
+  if(window.innerWidth<=900&&currentFilter==='all'){
     const cats=['coffee','cold','cake','pastry','tea'];
     let active='all';
     for(const cat of cats){
@@ -2611,12 +2550,10 @@ window.addEventListener('scroll',()=>{
       const rect=el.getBoundingClientRect();
       if(rect.top<=160){active=cat;}
     }
-    // Highlight mobile tab
     document.querySelectorAll('.pkc-mobile-filter-tab').forEach(b=>{
       const match=(active==='all'&&b.textContent.trim()==='All')||(b.getAttribute('onclick')&&b.getAttribute('onclick').includes(`'${active}'`));
       b.classList.toggle('active',match);
     });
-    // Scroll active tab into view
     const activeTab=document.querySelector('.pkc-mobile-filter-tab.active');
     if(activeTab){activeTab.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}
   }
@@ -2642,18 +2579,20 @@ function observeReveal(){
   if(obs)obs.disconnect();
   obs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
-      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+      if(e.isIntersecting)e.target.classList.add('visible');
     });
-  },{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+  },{threshold:0.12});
   document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>obs.observe(el));
 }
 
-/* ══════════════════════
-   INIT
-═════════════════════════════════ */
-renderMenu();
-updateCartUI();
-observeReveal();
+window.addEventListener('DOMContentLoaded',()=>{
+  renderMenu();
+  updateCartUI();
+  setBranchUI();
+  observeReveal();
+  const track=document.getElementById('marqueeTrack');
+  if(track){track.innerHTML+=track.innerHTML;}
+});
 </script>
-</body>
+</pkc-page>
 </html>
