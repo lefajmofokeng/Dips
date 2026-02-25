@@ -272,7 +272,8 @@ input,select,textarea{font-family:var(--font);}
 /* ═══════════════════════════════════════════
    MENU SECTION — SIDEBAR LAYOUT
 ═══════════════════════════════════════════ */
-.menu-section{padding:96px 0;background:#fff;}
+.menu-section{padding:0 0 96px;background:#fff;}
+.menu-section-inner{padding-top:calc(var(--header-h,65px) + var(--filter-h,52px) + 36px);}
 .menu-header-top{margin-bottom:52px;}
 .menu-layout{
   display:grid;
@@ -389,23 +390,27 @@ input,select,textarea{font-family:var(--font);}
 
 /* Mobile sticky filter tabs */
 .pkc-mobile-filter-bar{
-  display:none;
-  position:sticky;top:0;z-index:499;
-  background:var(--off-white);
+  display:flex;
+  position:fixed;
+  top:0;
+  left:0;width:100%;
+  z-index:899;
+  background:#fff;
   border-bottom:1px solid var(--border);
-  padding:10px 16px;
+  padding:8px 20px 8px;
   overflow-x:auto;
   gap:8px;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
-  margin-top:0;
+  transition:top 0.4s var(--ease), transform 0.4s var(--ease);
 }
 .pkc-mobile-filter-bar::-webkit-scrollbar{display:none;}
+.pkc-mobile-filter-bar.bar-hidden{transform:translateY(-100%);}
 .pkc-mobile-filter-tab{
   display:inline-flex;align-items:center;gap:6px;
-  padding:8px 14px;border-radius:50px;
+  padding:6px 14px;border-radius:50px;
   font-size:12px;font-weight:600;color:var(--text-light);
-  border:1.5px solid var(--border);background:#fff;
+  border:1.5px solid var(--border);background:transparent;
   white-space:nowrap;flex-shrink:0;transition:all 0.2s;cursor:pointer;
 }
 .pkc-mobile-filter-tab.active{background:var(--accent);border-color:var(--accent);color:#fff;}
@@ -681,7 +686,7 @@ input,select,textarea{font-family:var(--font);}
 }
 .branches-strip:hover .branch-strip-num{color:rgba(255,255,255,0.1);}
 .branch-strip-body{
-  flex:1;padding:40px 102px;
+  flex:1;padding:40px 52px;
   display:flex;flex-direction:column;justify-content:center;
   position:relative;z-index:1;
   border-right:1px solid var(--border);
@@ -1390,7 +1395,6 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
   .video-layout{grid-template-columns:1fr;gap:36px;}
   .menu-sidebar{display:none;}
   .menu-layout{grid-template-columns:1fr;}
-  .pkc-mobile-filter-bar{display:flex;}
   .products-grid{grid-template-columns:repeat(3,1fr);}
   .branches-grid{grid-template-columns:1fr;}
 
@@ -1408,7 +1412,6 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
 
   .cart-panel{max-width:100%;}
   .fav-panel{max-width:100%;}
-  .branch-card{flex-direction:column;gap:12px;}
   .form-row{grid-template-columns:1fr;}
   #orderModal{flex-direction:column !important;max-height:90vh !important;}
   #orderModalImg{width:100% !important;min-width:unset !important;height:180px;border-radius:24px 24px 0 0 !important;}
@@ -1550,7 +1553,7 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
 
 <!-- ████ MENU SECTION ████ -->
 <pkc-section class="menu-section" id="menu">
-  <!-- Mobile sticky filter bar -->
+  <!-- Filter bar — fixed below header, all screen sizes -->
   <div class="pkc-mobile-filter-bar" id="pkc-mobile-filter-bar">
     <button class="pkc-mobile-filter-tab active" onclick="filterMenu('all',this)">All</button>
     <button class="pkc-mobile-filter-tab" onclick="filterMenu('coffee',this)">Hot Coffee</button>
@@ -1560,7 +1563,7 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
     <button class="pkc-mobile-filter-tab" onclick="filterMenu('tea',this)">Tea</button>
   </div>
 
-  <div class="container">
+  <div class="container menu-section-inner">
     <div class="menu-header-top reveal">
       <div class="section-label">Our Menu</div>
       <h2 class="section-title">Made with love, served with pride</h2>
@@ -1868,7 +1871,7 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
         </div>
         <div class="pkc-footer-col-body">
           <a href="tel:+27110001234">+27 11 000 1234</a>
-          <a href="mailto:hello@phokacoffee.co.za">hello@phokacoffee.co.za</a>
+          <a href="/cdn-cgi/l/email-protection#68000d0404072818000703090b070e0e0d0d460b07461209"><span class="__cf_email__" data-cfemail="325a575e5e5d72425a5d5953515d545457571c515d1c4853">[email&#160;protected]</span></a>
           <a href="#">WhatsApp Us</a>
           <a href="#">Catering Enquiries</a>
         </div>
@@ -2274,7 +2277,7 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ══════════════════════
    DATA
 ══════════════════════ */
@@ -2384,7 +2387,6 @@ function productCardHTML(p,i){
 
 function filterMenu(cat,btnEl){
   currentFilter=cat;
-  // Update desktop sidebar
   document.querySelectorAll('.sidebar-filter').forEach(b=>b.classList.toggle('active',b.dataset.cat===cat));
   // Update mobile tabs
   document.querySelectorAll('.pkc-mobile-filter-tab').forEach(b=>{
@@ -2728,33 +2730,40 @@ function toggleMobileNav(){
    HEADER SCROLL
 ══════════════════════ */
 let lastScrollY=0;
+function positionFilterBar(){
+  const header=document.getElementById('pkc-main-header');
+  const bar=document.getElementById('pkc-mobile-filter-bar');
+  if(!bar)return;
+  const headerH=header.offsetHeight;
+  bar.style.top=headerH+'px';
+  // Set CSS vars so menu section padding stays in sync
+  document.documentElement.style.setProperty('--header-h', headerH+'px');
+  document.documentElement.style.setProperty('--filter-h', bar.offsetHeight+'px');
+}
 window.addEventListener('scroll',()=>{
   const scrollY=window.scrollY;
   const header=document.getElementById('pkc-main-header');
-  // Hide on scroll down, show on scroll up
+  const bar=document.getElementById('pkc-mobile-filter-bar');
+  // Hide header on scroll down, show on scroll up
   if(scrollY>lastScrollY&&scrollY>80){
     header.classList.add('hidden');
   }else{
     header.classList.remove('hidden');
   }
   lastScrollY=scrollY;
-  // Scrolled shadow state
   header.classList.toggle('scrolled',scrollY>60);
-  // Update mobile filter bar top to match header height
-  const bar=document.getElementById('pkc-mobile-filter-bar');
-  if(bar&&window.innerWidth<=900){
-    const headerH=header.offsetHeight;
-    bar.style.top=headerH+'px';
-  }
-  // Track active category on scroll (mobile)
-  if(window.innerWidth<=900&&currentFilter==='all'){
+  // Sync filter bar position under header
+  positionFilterBar();
+  // Track active category on scroll (all sizes) when showing all
+  if(currentFilter==='all'){
     const cats=['coffee','cold','cake','pastry','tea'];
     let active='all';
     for(const cat of cats){
       const el=document.getElementById('cat-'+cat);
       if(!el)continue;
       const rect=el.getBoundingClientRect();
-      if(rect.top<=160){active=cat;}
+      const offset=(header.offsetHeight||0)+(bar?bar.offsetHeight:0)+10;
+      if(rect.top<=offset){active=cat;}
     }
     document.querySelectorAll('.pkc-mobile-filter-tab').forEach(b=>{
       const match=(active==='all'&&b.textContent.trim()==='All')||(b.getAttribute('onclick')&&b.getAttribute('onclick').includes(`'${active}'`));
@@ -2785,8 +2794,7 @@ function observeReveal(){
   if(obs)obs.disconnect();
   obs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
-      if(e.isIntersecting)e.target.classList.add('visible');
-    });
+    if(e.isIntersecting)e.target.classList.add('visible');
   },{threshold:0.12});
   document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>obs.observe(el));
 }
@@ -2796,9 +2804,11 @@ window.addEventListener('DOMContentLoaded',()=>{
   updateCartUI();
   setBranchUI();
   observeReveal();
+  positionFilterBar();
   const track=document.getElementById('marqueeTrack');
   if(track){track.innerHTML+=track.innerHTML;}
 });
+window.addEventListener('resize',positionFilterBar,{passive:true});
 
 /* ══════════════════════
    FOOTER ACCORDION
@@ -2806,12 +2816,4 @@ window.addEventListener('DOMContentLoaded',()=>{
 function toggleFooterCol(headEl){
   if(window.innerWidth>768)return;
   const col=headEl.closest('.pkc-footer-col');
-  const isOpen=col.classList.contains('open');
-  // Close all
-  document.querySelectorAll('.pkc-footer-col.open').forEach(c=>c.classList.remove('open'));
-  // Open clicked if it was closed
-  if(!isOpen)col.classList.add('open');
-}
-</script>
-</pkc-page>
-</html>
+  const i
