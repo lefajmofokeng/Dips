@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#FAF7F2">
+<meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Crushin — Fish & Chips, Crafted With Soul</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,34 +33,35 @@
 @font-face {
     font-family: 'Flame';
     src: url('fonts/Flame-Bold.woff') format('truetype');
-    font-weight: 600;
+    font-weight: 700;
     font-style: normal;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --cream:#F9F5E7;
-  --off-white:#F2EDD6;
-  --warm-white:#EAE3C4;
-  --choco-50:#F0EDD8;
-  --choco-100:#D6CFB0;
-  --choco-200:#7DB99A;
-  --choco-300:#3D9468;
-  --choco-400:#1E6440;
-  --choco-500:#1A5436;
-  --choco-600:#13402A;
-  --choco-700:#0D2E1D;
-  --choco-800:#071A10;
-  --accent:#1A6B3C;
-  --accent-light:#2D9E5E;
-  --accent-dark:#0F4525;
-  --text-dark:#071A10;
-  --text-mid:#13402A;
-  --text-light:#3A6B52;
-  --text-muted:#7A8A70;
-  --border:#C8C4A8;
-  --shadow:0 4px 30px rgba(26,107,60,0.08);
-  --shadow-lg:0 20px 60px rgba(26,107,60,0.14);
+  /* ── Brand palette: lime-green / black / light-grey / white ── */
+  --cream:#ffffff;
+  --off-white:#ffffff;
+  --warm-white:#e0e0e0;
+  --choco-50:#f5f5f5;
+  --choco-100:#e0e0e0;
+  --choco-200:#b0cf6a;
+  --choco-300:#78b72a;
+  --choco-400:#5a8f1f;
+  --choco-500:#4a7519;
+  --choco-600:#3a5c12;
+  --choco-700:#2a430d;
+  --choco-800:#1a2a07;
+  --accent:#78b72a;
+  --accent-light:#9ace4e;
+  --accent-dark:#5a8f1f;
+  --text-dark:#000000;
+  --text-mid:#1a1a1a;
+  --text-light:#3a3a3a;
+  --text-muted:#777777;
+  --border:#d4d4d4;
+  --shadow:0 4px 30px rgba(0,0,0,0.07);
+  --shadow-lg:0 20px 60px rgba(0,0,0,0.13);
   --radius:4px;
   --radius-sm:4px;
   --ease:cubic-bezier(0.25,0.46,0.45,0.94);
@@ -116,17 +117,18 @@ input,select,textarea{font-family:var(--font);}
 .btn-primary{
   display:inline-flex;align-items:center;gap:10px;
   padding:14px 32px;background:var(--accent);color:#fff;
-  border-radius:50px;font-size:14px;font-weight:600;letter-spacing:0.3px;
+  border-radius:50px;font-size:14px;font-weight:700;letter-spacing:0.3px;
   transition:all 0.3s var(--ease);border:none;
 }
-.btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(107,52,16,0.3);}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(120,183,42,0.35);}
 .btn-secondary{
   display:inline-flex;align-items:center;gap:10px;
-  padding:13px 30px;border:2px solid var(--accent);color:var(--accent);
+  padding:13px 30px;border:2px solid rgba(255,255,255,0.75);color:#fff;
   border-radius:50px;font-size:14px;font-weight:600;
   transition:all 0.3s var(--ease);
+  background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);
 }
-.btn-secondary:hover{background:var(--accent);color:#fff;transform:translateY(-2px);}
+.btn-secondary:hover{background:rgba(255,255,255,0.18);border-color:#fff;transform:translateY(-2px);}
 .section-label{
   display:inline-flex;align-items:center;gap:8px;
   font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
@@ -162,18 +164,18 @@ input,select,textarea{font-family:var(--font);}
   width:calc(100% - 48px);max-width:1360px;z-index:900;
   padding:12px 24px;
   display:flex;justify-content:space-between;align-items:center;
-  background:rgba(249,245,231,0.92);
+  background:rgba(255,255,255,0.95);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border:1px solid rgba(200,196,168,0.55);
+  border:1px solid rgba(212,212,212,0.6);
   border-radius:60px;
-  box-shadow:0 4px 24px rgba(26,107,60,0.10), 0 1px 0 rgba(255,255,255,0.7) inset;
+  box-shadow:0 4px 24px rgba(0,0,0,0.08), 0 1px 0 rgba(255,255,255,0.9) inset;
   transition:transform 0.4s var(--ease), padding 0.3s var(--ease), box-shadow 0.3s, top 0.3s var(--ease), width 0.3s var(--ease), background 0.3s;
   box-sizing:border-box;
 }
 .pkc-header.scrolled{
   padding:10px 20px;
-  background:rgba(249,245,231,0.97);
-  box-shadow:0 8px 32px rgba(26,107,60,0.14), 0 1px 0 rgba(255,255,255,0.9) inset;
+  background:rgba(255,255,255,0.98);
+  box-shadow:0 8px 32px rgba(0,0,0,0.12), 0 1px 0 rgba(255,255,255,1) inset;
 }
 .pkc-header.hidden{
   transform:translateX(-50%) translateY(calc(-100% - 32px));
@@ -181,27 +183,26 @@ input,select,textarea{font-family:var(--font);}
 
 /* HEADER SEARCH */
 .pkc-search-wrap{
-  position:relative;flex:1;max-width:340px;margin:0 20px;
+  position:relative;flex:1;max-width:340px;margin:0 20px;order:2;
 }
 .pkc-search-input{
   width:100%;padding:9px 16px 9px 38px;
   border:1.5px solid var(--border);border-radius:50px;
-  background:var(--off-white);font-family:var(--font);font-size:13px;
+  background:#f7f7f7;font-family:var(--font);font-size:13px;
   color:var(--text-dark);outline:none;
   transition:border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
 .pkc-search-input::placeholder{color:var(--text-muted);}
-.pkc-search-input:focus{border-color:var(--accent);background:var(--cream);box-shadow:0 0 0 3px rgba(26,107,60,0.08);}
+.pkc-search-input:focus{border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px rgba(120,183,42,0.12);}
 .pkc-search-icon{
   position:absolute;left:12px;top:50%;transform:translateY(-50%);
   color:var(--text-muted);pointer-events:none;
 }
 .pkc-search-results{
   position:absolute;top:calc(100% + 10px);left:0;right:0;
-  background:var(--cream);border:1.5px solid var(--border);border-radius:16px;
-  box-shadow:0 12px 40px rgba(26,107,60,0.14);
+  background:#fff;border:1.5px solid var(--border);border-radius:16px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.12);
   z-index:999;
-  /* Contain scrollbar inside rounded corners */
   overflow:hidden;
   display:none;
 }
@@ -209,13 +210,12 @@ input,select,textarea{font-family:var(--font);}
   max-height:360px;
   overflow-y:auto;
   border-radius:16px;
-  /* scrollbar inside */
   scrollbar-width:thin;
   scrollbar-color:var(--choco-100) transparent;
 }
 .pkc-search-results-inner::-webkit-scrollbar{width:4px;}
 .pkc-search-results-inner::-webkit-scrollbar-track{background:transparent;margin:8px 0;}
-.pkc-search-results-inner::-webkit-scrollbar-thumb{background:var(--choco-100);border-radius:10px;}
+.pkc-search-results-inner::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px;}
 .pkc-search-results.visible{display:block;}
 .pkc-search-result-item{
   display:flex;align-items:center;gap:12px;
@@ -237,7 +237,7 @@ input,select,textarea{font-family:var(--font);}
 @media(max-width:900px){
   .pkc-search-wrap{display:none;}
 }
-.pkc-header-left{display:flex;align-items:center;gap:40px;min-width:0;flex:1;}
+.pkc-header-left{display:flex;align-items:center;gap:40px;min-width:0;flex:1;order:1;}
 .pkc-logo-wrap{display:flex;align-items:center;gap:11px;flex-shrink:0;}
 .pkc-logo-icon{
   width:38px;height:38px;border-radius:10px;
@@ -248,7 +248,7 @@ input,select,textarea{font-family:var(--font);}
 .pkc-nav-links{display:flex;align-items:center;gap:28px;}
 .pkc-nav-links a{font-size:16px;font-weight:500;color:var(--text-mid);transition:color 0.2s;letter-spacing:0.2px;white-space:nowrap;}
 .pkc-nav-links a:hover{color:var(--accent);}
-.pkc-header-right{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.pkc-header-right{display:flex;align-items:center;gap:12px;flex-shrink:0;order:3;}
 .pkc-icon-btn{
   width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
   background:transparent;color:var(--text-mid);transition:all 0.2s;position:relative;flex-shrink:0;
@@ -266,74 +266,56 @@ input,select,textarea{font-family:var(--font);}
 }
 
 /* ═══════════════════════════════════════════
-   HERO
+   HERO — full-bleed background image
 ═══════════════════════════════════════════ */
 .hero{
-  min-height:80vh;position:relative;
+  min-height:92vh;position:relative;
   display:flex;align-items:center;
-  overflow:hidden;background:var(--cream);
+  overflow:hidden;
   padding-top:90px;
 }
 .hero-bg{
-  position:absolute;top:0;right:0;
-  width:52%;height:100%;
-  overflow:hidden;
+  position:absolute;inset:0;
+  width:100%;height:100%;
 }
-.hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
 .hero-bg::after{
   content:'';position:absolute;inset:0;
-  
+  background:linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.15) 100%);
 }
 .hero-content{
   position:relative;z-index:2;
   padding:130px 0 120px;
   width:100%;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:400px;
+  display:flex;
   align-items:center;
 }
 .hero-text-col{
-  max-width:520px;
+  max-width:560px;
 }
 .hero-img-col{
-  display:none; /* hidden by default, shown on desktop via the hero-bg instead */
+  display:none;
 }
 .hero h1{
-  font-size:clamp(50px,5.5vw,56px);
-  font-weight:600;line-height:1.01;
-  color:var(--text-dark);
+  font-size:clamp(44px,5.5vw,64px);
+  font-weight:600;line-height:1.0;
+  color:#ffffff;
   margin-bottom:22px;
 }
 .hero h1 em{
   color:var(--accent);font-style:normal;
   position:relative;display:inline-block;
 }
-
 .hero-sub{
-  font-size:17px;color:var(--text-light);
-  line-height:1.75;margin-bottom:34px;max-width:420px;font-weight:400;
+  font-size:17px;color:rgba(255,255,255,0.85);
+  line-height:1.75;margin-bottom:34px;max-width:440px;font-weight:400;
 }
 .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
 .hero-scroll{
   position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
   display:flex;flex-direction:column;align-items:center;gap:6px;
-  color:var(--text-muted);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;
+  color:rgba(255,255,255,0.55);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;
 }
-
-/* ═══════════════════════════════════════════
-   MARQUEE BANNER
-═══════════════════════════════════════════ */
-.marquee-wrap{background:var(--accent);padding:13px 0;overflow:hidden;}
-.marquee-track{display:flex;width:max-content;animation:marqueeScroll 35s linear infinite;}
-.marquee-item{
-  display:flex;align-items:center;gap:14px;
-  padding:0 28px;white-space:nowrap;
-  font-size:13px;font-weight:600;color:#fff;letter-spacing:0.3px;
-}
-.marquee-sep{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.35);flex-shrink:0;}
-@keyframes marqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
 
 /* ═══════════════════════════════════════════
    MENU SECTION — HORIZONTAL ROW LAYOUT (no sidebar)
@@ -354,7 +336,7 @@ input,select,textarea{font-family:var(--font);}
   background:var(--choco-50);border:1px solid var(--choco-100);
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
-.cat-group-title{font-size:22px;font-weight:500;color:var(--text-dark);letter-spacing:-0.4px;}
+.cat-group-title{font-size:22px;font-weight:500;color:var(--text-dark);}
 /* HORIZONTAL SCROLL ROW - shows 4 cards */
 .products-row{
   display:grid;
@@ -377,8 +359,8 @@ input,select,textarea{font-family:var(--font);}
 .see-all-btn{
   display:inline-flex;align-items:center;gap:7px;
   padding:11px 28px;border-radius:50px;
-  font-size:13px;font-weight:700;color:var(--accent);
-  border:1.5px solid var(--accent);
+  font-size:15px;font-weight:500;color:var(--accent);
+  border:2px solid var(--accent);
   background:transparent;
   transition:all 0.2s var(--ease);cursor:pointer;
 }
@@ -412,29 +394,29 @@ input,select,textarea{font-family:var(--font);}
 .fav-btn{
   position:absolute;top:10px;right:10px;z-index:3;
   width:32px;height:32px;border-radius:50%;
-  background:rgba(249,245,231,0.92);backdrop-filter:blur(6px);
+  background:rgba(255,255,255,0.92);backdrop-filter:blur(6px);
   display:flex;align-items:center;justify-content:center;
   transition:all 0.2s;
 }
-.fav-btn:hover{background:var(--cream);transform:scale(1.1);}
+.fav-btn:hover{background:#fff;transform:scale(1.1);}
 .fav-btn.active svg{fill:var(--accent);stroke:var(--accent);}
 .quick-add{
   position:absolute;bottom:10px;left:10px;right:10px;z-index:2;
-  background:rgba(249,245,231,0.95);backdrop-filter:blur(8px);
+  background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);
   border-radius:50px;padding:10px 16px;
   display:flex;justify-content:center;align-items:center;gap:6px;
-  font-size:13px;font-weight:700;color:var(--accent);
+  font-size:14px;font-weight:500;color:var(--accent);
   transform:translateY(60px);opacity:0;
   transition:all 0.3s var(--ease);
-  border:1.5px solid var(--border);
+ 
 }
 .product-card:hover .quick-add{transform:translateY(0);opacity:1;}
 .quick-add:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
 .product-info{padding:14px 0;}
-.product-name{font-size:18px;font-weight:500;color:var(--text-dark);margin-bottom:3px;line-height:1.3;}
+.product-name{font-size:19px;font-weight:500;color:var(--text-dark);margin-bottom:3px;line-height:1.3;}
 .product-desc{font-size:15px;color:#00000094;margin-bottom:10px;line-height:1.5;}
 .product-footer{display:flex;justify-content:space-between;align-items:center;}
-.product-price{font-size:18px;font-weight:500;color:var(--accent);}
+.product-price{font-size:19px;font-weight:500;color:var(--accent);}
 .product-price span{font-size:11px;font-weight:400;color:var(--text-muted);}
 .product-rating{display:flex;align-items:center;gap:3px;font-size:11px;color:var(--text-muted);}
 .stars-svg{color:#F59E0B;}
@@ -457,7 +439,7 @@ input,select,textarea{font-family:var(--font);}
   display:inline-flex;align-items:center;gap:6px;
   padding:8px 14px;border-radius:50px;
   font-size:12px;font-weight:600;color:var(--text-light);
-  border:1.5px solid var(--border);background:var(--cream);
+  border:1.5px solid var(--border);background:#fff;
   white-space:nowrap;flex-shrink:0;transition:all 0.2s;cursor:pointer;
 }
 .pkc-mobile-filter-tab.active{background:var(--accent);border-color:var(--accent);color:#fff;}
@@ -480,15 +462,15 @@ input,select,textarea{font-family:var(--font);}
   /* Anchor to bottom, leave 64px gap at top so it never touches screen edge */
   bottom:0;left:50%;
   transform:translateX(-50%) translateY(100%);
-  width:100%;max-width:1200px;
-  height:calc(100vh - 64px);    /* fixed height — always leaves visible gap at top */
-  background:var(--cream);
+  width:100%;max-width:1350px;
+  height:calc(100vh - 20px);    /* fixed height — always leaves visible gap at top */
+  background:#fff;
   border-radius:40px 40px 0 0;
-  box-shadow:0 -20px 80px rgba(7,26,16,0.22);
+  box-shadow:0 -20px 80px rgba(0,0,0,0.18);
   z-index:2001;
   display:flex;flex-direction:column;
   overflow:hidden;
-  transition:transform 0.48s cubic-bezier(0.32,0.72,0,1);
+  transition:transform 0.48s cubic-bezier(0.32,0.72,0,1); 
 }
 .overlay.open .order-sheet{
   transform:translateX(-50%) translateY(0);
@@ -498,24 +480,25 @@ input,select,textarea{font-family:var(--font);}
 .order-sheet-handle{
   width:40px;height:4px;border-radius:2px;
   background:var(--border);
-  margin:14px auto 0;
+  margin:14px auto 14px;
   flex-shrink:0;
 }
 
-/* Sheet inner layout — two columns */
+/* Sheet inner layout — image wider, details narrower */
 .order-sheet-layout{
   display:grid;
-  grid-template-columns:380px 1fr;
+  grid-template-columns:55% 1fr;
   flex:1;
   min-height:0;
   overflow:hidden;
 }
 
-/* Left: sticky image column */
+/* Left: sticky image column — top-left radius matches the sheet's 40px */
 .order-sheet-img-col{
   position:relative;overflow:hidden;
   background:var(--choco-50);
-  flex-shrink:0;
+  flex-shrink:0; padding-top: 20px;
+  border-radius:40px 0 0 0;
 }
 .order-sheet-img-col img{
   width:100%;height:100%;object-fit:cover;
@@ -530,7 +513,7 @@ input,select,textarea{font-family:var(--font);}
 .order-sheet-badge{
   position:absolute;bottom:20px;left:20px;z-index:3;
   background:var(--accent);color:#fff;
-  font-size:11px;font-weight:700;letter-spacing:0.6px;text-transform:uppercase;
+  font-size:11px;font-weight:500;letter-spacing:0.6px;text-transform:uppercase;
   padding:6px 14px;border-radius:50px;
 }
 
@@ -538,6 +521,8 @@ input,select,textarea{font-family:var(--font);}
 .order-sheet-right{
   display:flex;flex-direction:column;
   min-height:0;overflow:hidden;
+  border-radius:0 40px 0 0;
+  background:#fff;
 }
 
 /* Scrollable content area */
@@ -555,8 +540,8 @@ input,select,textarea{font-family:var(--font);}
 /* Sticky bottom bar — qty + add button always visible */
 .order-sheet-footer{
   flex-shrink:0;
-  padding:16px 32px 24px;
-  background:var(--cream);
+  padding:13px 32px 12px;
+  background:#fff;
   border-top:1px solid var(--border);
   display:flex;align-items:center;gap:16px;
 }
@@ -567,13 +552,13 @@ input,select,textarea{font-family:var(--font);}
 .order-sheet-footer .qty-btn{
   width:38px;height:38px;border-radius:50%;
   background:var(--off-white);color:var(--text-dark);
-  font-size:20px;font-weight:600;
+  font-size:20px;font-weight:500;
   display:flex;align-items:center;justify-content:center;
-  transition:all 0.2s;border:1px solid var(--border);
+  transition:all 0.2s;border:2px solid var(--border);
   cursor:pointer;
 }
 .order-sheet-footer .qty-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
-.order-sheet-footer .qty-val{font-size:18px;font-weight:800;color:var(--text-dark);min-width:28px;text-align:center;}
+.order-sheet-footer .qty-val{font-size:18px;font-weight:500;color:var(--text-dark);min-width:28px;text-align:center;}
 .order-sheet-footer .add-btn{
   flex:1;margin-top:0;
   padding:14px 20px;
@@ -590,16 +575,16 @@ input,select,textarea{font-family:var(--font);}
 .order-sheet-close:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
 
 .order-modal-body{padding:28px 32px 20px;}
-.order-product-name{font-size:24px;font-weight:800;color:var(--text-dark);margin-bottom:4px;letter-spacing:-0.5px;}
+.order-product-name{font-size:24px;font-weight:500;color:var(--text-dark);margin-bottom:4px;letter-spacing:-0.5px;}
 .order-product-sub{font-size:14px;color:var(--text-light);margin-bottom:24px;line-height:1.55;}
 .order-section{margin-bottom:22px;}
 .order-section-title{
-  font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;
+  font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:1.2px;
   color:var(--text-mid);margin-bottom:11px;
   display:flex;justify-content:space-between;align-items:center;
 }
 .order-section-badge{
-  font-size:10px;font-weight:600;text-transform:none;letter-spacing:0;
+  font-size:10px;font-weight:500;text-transform:none;letter-spacing:0;
   background:var(--choco-50);color:var(--text-muted);
   padding:2px 8px;border-radius:20px;
 }
@@ -608,56 +593,56 @@ input,select,textarea{font-family:var(--font);}
 .coffee-type-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .coffee-type-option{
   border:2px solid var(--border);border-radius:var(--radius-sm);
-  padding:13px 15px;cursor:pointer;transition:all 0.2s;background:var(--off-white);
+  padding:13px 15px;cursor:pointer;transition:all 0.2s;background:#f7f7f7;
 }
-.coffee-type-option.selected{border-color:var(--accent);background:var(--choco-50);}
-.coffee-type-option:hover:not(.selected){border-color:var(--choco-200);}
+.coffee-type-option.selected{border-color:var(--accent);background:#f0f7e6;}
+.coffee-type-option:hover:not(.selected){border-color:var(--accent-light);}
 .ct-icon{margin-bottom:6px;}
-.ct-label{font-size:14px;font-weight:700;color:var(--text-dark);}
+.ct-label{font-size:14px;font-weight:500;color:var(--text-dark);}
 .ct-sub{font-size:11px;color:var(--text-muted);margin-top:1px;}
 /* Sugar */
 .sugar-row{display:flex;align-items:center;gap:10px;}
 .sugar-btn{
   width:34px;height:34px;border-radius:50%;
-  background:var(--off-white);color:var(--text-dark);font-size:18px;font-weight:700;
+  background:#f0f0f0;color:var(--text-dark);font-size:18px;font-weight:500;
   display:flex;align-items:center;justify-content:center;
-  transition:all 0.2s;flex-shrink:0;border:1px solid var(--border);cursor:pointer;
+  transition:all 0.2s;flex-shrink:0;border:px solid var(--border);cursor:pointer;
 }
 .sugar-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
 .sugar-track{flex:1;height:5px;background:var(--border);border-radius:3px;position:relative;}
 .sugar-fill{height:100%;background:var(--accent);border-radius:3px;transition:width 0.25s var(--ease);}
-.sugar-label{font-size:13px;font-weight:700;color:var(--accent);min-width:72px;text-align:right;}
+.sugar-label{font-size:13px;font-weight:500;color:var(--accent);min-width:72px;text-align:right;}
 /* Extras */
 .extras-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .extra-option{
   display:flex;align-items:center;gap:9px;
   border:1.5px solid var(--border);border-radius:var(--radius-sm);
-  padding:10px 12px;cursor:pointer;transition:all 0.2s;background:var(--off-white);
+  padding:10px 12px;cursor:pointer;transition:all 0.2s;background:#f7f7f7;
 }
-.extra-option.checked{border-color:var(--accent);background:var(--choco-50);}
+.extra-option.checked{border-color:var(--accent);background:#f0f7e6;}
 .extra-check{
   width:19px;height:19px;border-radius:5px;border:1.5px solid var(--border);flex-shrink:0;
   display:flex;align-items:center;justify-content:center;transition:all 0.2s;
 }
 .extra-option.checked .extra-check{background:var(--accent);border-color:var(--accent);}
-.extra-name{font-size:12px;font-weight:600;color:var(--text-dark);}
+.extra-name{font-size:12px;font-weight:500;color:var(--text-dark);}
 .extra-price{font-size:11px;color:var(--text-muted);}
 /* Size */
 .size-options{display:flex;gap:8px;}
 .size-btn{
   flex:1;padding:11px 6px;border:1.5px solid var(--border);border-radius:var(--radius-sm);
-  font-size:13px;font-weight:700;color:var(--text-mid);
-  transition:all 0.2s;text-align:center;cursor:pointer;background:var(--off-white);
+  font-size:13px;font-weight:500;color:var(--text-mid);
+  transition:all 0.2s;text-align:center;cursor:pointer;background:#f7f7f7;
 }
 .size-btn small{display:block;font-size:10px;font-weight:400;color:var(--text-muted);margin-top:2px;}
-.size-btn.selected,.size-btn:hover{border-color:var(--accent);background:var(--choco-50);color:var(--accent);}
+.size-btn.selected,.size-btn:hover{border-color:var(--accent);background:#f0f7e6;color:var(--accent);}
 /* Notes */
 .notes-input{
   width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);
-  font-size:13px;color:var(--text-dark);background:var(--off-white);
+  font-size:13px;color:var(--text-dark);background:#f7f7f7;
   outline:none;resize:none;transition:border-color 0.2s;font-family:var(--font);
 }
-.notes-input:focus{border-color:var(--accent);background:var(--cream);}
+.notes-input:focus{border-color:var(--accent);background:#fff;}
 /* Add button */
 .add-btn{
   flex:1;padding:15px 20px;border-radius:50px;
@@ -668,22 +653,127 @@ input,select,textarea{font-family:var(--font);}
   cursor:pointer;
 }
 .add-btn:hover{background:var(--accent-dark);}
-.add-btn-sep{width:1px;height:18px;background:rgba(255,255,255,0.3);}
+.add-btn-sep{width:1px;height:18px;background:rgba(255,255,255,0.35);}
 
 /* Mobile: stack vertically */
 @media(max-width:720px){
   .order-sheet{max-width:100%;border-radius:28px 28px 0 0;height:calc(100vh - 40px);}
-  .order-sheet-layout{grid-template-columns:1fr;grid-template-rows:200px 1fr;}
-  .order-sheet-img-col{height:200px;}
+  .order-sheet-layout{grid-template-columns:1fr;grid-template-rows:260px 1fr;}
+  /* On mobile the image is top — only top corners get the sheet's radius */
+  .order-sheet-img-col{height:260px;border-radius:28px 28px 0 0;}
   .order-sheet-img-col img{position:absolute;}
-  .order-sheet-right{min-height:0;}
+  /* Right column loses its desktop top-right radius on mobile */
+  .order-sheet-right{border-radius:0;min-height:0;}
   .order-modal-body{padding:18px 20px 16px;}
   .order-sheet-footer{padding:12px 20px 20px;gap:12px;}
 }
 
 /* ═══════════════════════════════════════════
-   VIDEO SECTION
+   MOBILE SEARCH — icon tap → full header expand
 ═══════════════════════════════════════════ */
+.pkc-mobile-search-btn{
+  display:none;
+  width:40px;height:40px;border-radius:50%;
+  align-items:center;justify-content:center;
+  background:transparent;color:var(--text-mid);
+  transition:all 0.2s;flex-shrink:0;
+}
+.pkc-mobile-search-btn:hover{background:var(--choco-50);color:var(--accent);}
+@media(max-width:900px){
+  .pkc-mobile-search-btn{display:flex;}
+}
+
+/* The bar that slides down — NO overflow:hidden so results can spill */
+.pkc-mobile-search-overlay{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:1600;
+  background:#fff;
+  padding:0 16px;
+  display:flex;align-items:center;gap:12px;
+  height:0;
+  opacity:0;
+  pointer-events:none;
+  transition:height 0.3s cubic-bezier(0.32,0.72,0,1), opacity 0.22s ease;
+ 
+}
+.pkc-mobile-search-overlay.open{
+  height:66px;
+  opacity:1;
+  pointer-events:all;
+}
+.pkc-mobile-search-overlay .back-btn{
+  width:38px;height:38px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--off-white);color:var(--text-dark);
+  border:none;cursor:pointer;
+  transition:background 0.2s;
+}
+.pkc-mobile-search-overlay .back-btn:hover{background:var(--border);}
+.pkc-mobile-search-overlay .search-inner{
+  position:relative;flex:1;
+}
+.pkc-mobile-search-overlay .search-inner svg.search-ico{
+  position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  color:var(--text-muted);pointer-events:none;z-index:1;
+}
+.pkc-mobile-search-overlay input{
+  width:100%;padding:11px 16px 11px 38px;
+  border:1.5px solid var(--border);border-radius:50px;
+  background:#f7f7f7;font-family:var(--font);font-size:15px;
+  color:var(--text-dark);outline:none;
+  transition:border-color 0.2s, box-shadow 0.2s;
+}
+.pkc-mobile-search-overlay input:focus{
+  border-color:var(--accent);background:#fff;
+  box-shadow:0 0 0 3px rgba(120,183,42,0.12);
+}
+
+/* Full-screen results panel — separate from the bar so no clipping */
+.pkc-mobile-search-panel{
+  position:fixed;
+  top:66px;left:0;right:0;bottom:0;
+  z-index:1599;
+  background:#fff;
+  overflow-y:auto;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.2s ease;
+}
+.pkc-mobile-search-panel.open{
+  opacity:1;pointer-events:all;
+}
+.pkc-mobile-search-panel-inner{
+  padding:8px 0 40px;
+}
+/* Reuse same result item styling */
+.pkc-mobile-search-panel .pkc-search-result-item{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 20px;cursor:pointer;
+  border-bottom:1px solid var(--off-white);
+  transition:background 0.15s;
+}
+.pkc-mobile-search-panel .pkc-search-result-item:active{background:var(--choco-50);}
+.pkc-mobile-search-panel .pkc-search-result-img{
+  width:52px;height:52px;border-radius:12px;object-fit:cover;flex-shrink:0;
+}
+.pkc-mobile-search-panel .pkc-search-result-info{flex:1;min-width:0;}
+.pkc-mobile-search-panel .pkc-search-result-name{font-size:14px;font-weight:700;color:var(--text-dark);}
+.pkc-mobile-search-panel .pkc-search-result-cat{font-size:12px;color:var(--text-muted);margin-top:2px;}
+.pkc-mobile-search-panel .pkc-search-result-price{font-size:14px;font-weight:800;color:var(--accent);flex-shrink:0;}
+.pkc-mobile-search-panel .search-empty{
+  padding:48px 20px;text-align:center;color:var(--text-muted);
+}
+.pkc-mobile-search-panel .search-empty svg{margin:0 auto 14px;display:block;opacity:0.3;}
+.pkc-mobile-search-panel .search-empty p{font-size:15px;font-weight:600;color:var(--text-mid);}
+.pkc-mobile-search-panel .search-empty span{font-size:13px;}
+/* Dim backdrop behind panel but above page */
+.pkc-mobile-search-dim{
+  position:fixed;inset:0;z-index:1598;
+  background:rgba(0,0,0,0.35);
+  opacity:0;pointer-events:none;
+  transition:opacity 0.25s ease;
+}
+.pkc-mobile-search-dim.open{opacity:1;pointer-events:all;}
 .video-section{padding:96px 0;background:var(--cream);}
 .video-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
 .video-frame{
@@ -1128,11 +1218,11 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
 .cart-panel{
   position:absolute;top:0;right:0;
   width:100%;max-width:440px;height:100%;
-  background:var(--cream);
+  background:#fff;
   transform:translateX(100%);
   transition:transform 0.42s var(--ease);
   display:flex;flex-direction:column;
-  box-shadow:-16px 0 50px rgba(26,12,2,0.12);
+  box-shadow:-16px 0 50px rgba(0,0,0,0.10);
 }
 .cart-overlay.open .cart-panel{transform:translateX(0);}
 .cart-panel-header{
@@ -1353,11 +1443,11 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
 .fav-panel{
   position:absolute;top:0;right:0;
   width:100%;max-width:400px;height:100%;
-  background:var(--cream);
+  background:#fff;
   transform:translateX(100%);
   transition:transform 0.42s var(--ease);
   display:flex;flex-direction:column;
-  box-shadow:-16px 0 50px rgba(7,26,16,0.12);
+  box-shadow:-16px 0 50px rgba(0,0,0,0.10);
 }
 .fav-overlay.open .fav-panel{transform:translateX(0);}
 .fav-panel-header{
@@ -1500,13 +1590,20 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
   .app-layout{grid-template-columns:1fr 380px;}
 }
 @media(max-width:900px){
-  .pkc-header{top:10px;width:calc(100% - 24px);padding:10px 16px;border-radius:50px;}
-  .pkc-header.scrolled{padding:8px 14px;}
+  .pkc-header{
+    top:10px;width:calc(100% - 24px);
+    padding:10px 14px;border-radius:50px;
+    flex-wrap:nowrap;gap:0;
+    transition:transform 0.4s var(--ease), padding 0.3s var(--ease), box-shadow 0.3s, top 0.3s var(--ease), width 0.3s var(--ease), background 0.3s;
+  }
+  .pkc-header.scrolled{padding:8px 12px;}
+  /* Desktop search bar: hidden on mobile */
+  .pkc-search-wrap{display:none;}
   .container{padding:0 20px;}
   .pkc-nav-links{display:none;}
   .pkc-menu-toggle{display:flex;}
-  .hero-bg{width:100%;opacity:0.6;border-radius:0;}
-  .hero-bg::after{background:linear-gradient(to bottom,rgba(255, 255, 255, 0.216),rgba(168, 168, 168, 0.288));}
+  .hero-bg{width:100%;opacity:1;border-radius:0;}
+  .hero-bg::after{background:linear-gradient(to bottom,rgba(0,0,0,0.55),rgba(0,0,0,0.3));}
   .hero-content{padding:100px 0 60px;max-width:100%;grid-template-columns:1fr;}
   .hero-text-col{max-width:100%;}
   .hero h1{font-size:44px;letter-spacing:-1.5px;}
@@ -1518,20 +1615,16 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
 }
 @media(max-width:640px){
   .container{padding:0 16px;}
-  .pkc-header{top:8px;width:calc(100% - 20px);padding:9px 14px;}
+  .pkc-header{top:8px;width:calc(100% - 20px);padding:9px 12px;border-radius:50px;}
   .hero h1{font-size:34px;letter-spacing:-1px;}
   .hero-sub{font-size:15px;}
   .hero-actions{flex-direction:column;align-items:flex-start;}
   .products-row,.products-extra{grid-template-columns:repeat(2,1fr);gap:12px;}
-    .crns-section-wrapper {display: none;}
+  .crns-section-wrapper{display:none;}
   .cart-panel{max-width:100%;}
   .fav-panel{max-width:100%;}
   .branch-card{flex-direction:column;gap:12px;}
   .form-row{grid-template-columns:1fr;}
-  #orderModal{flex-direction:column !important;max-height:90vh !important;}
-  #orderModalImg{width:100% !important;min-width:unset !important;height:180px;border-radius:24px 24px 0 0 !important;}
-  #orderModalImg img{position:static !important;width:100% !important;height:100% !important;}
-  #orderModalScroll{border-radius:0 0 24px 24px !important;}
 }
 @media(max-width:420px){
   .products-row,.products-extra{grid-template-columns:1fr 1fr;}
@@ -1539,6 +1632,27 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
 }
 </style>
 </head>
+<!-- ████ MOBILE SEARCH (outside pkc-page so fixed positioning works correctly) ████ -->
+<div class="pkc-mobile-search-overlay" id="pkc-mobile-search-overlay">
+  <button class="back-btn" onclick="closeMobileSearch()" title="Back">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  </button>
+  <div class="search-inner">
+    <svg class="search-ico" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input type="text" id="pkc-mobile-search-input" placeholder="Search our menu…" oninput="handleMobileSearch(this.value)" autocomplete="off">
+  </div>
+</div>
+<div class="pkc-mobile-search-panel" id="pkc-mobile-search-panel">
+  <div class="pkc-mobile-search-panel-inner" id="pkc-mobile-search-panel-inner">
+    <div class="search-empty">
+      <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <p>Start typing to search</p>
+      <span>Fish, chips, burgers &amp; more…</span>
+    </div>
+  </div>
+</div>
+<div class="pkc-mobile-search-dim" id="pkc-mobile-search-dim" onclick="closeMobileSearch()"></div>
+
 <pkc-page id="pkc-page">
 
 <!-- ████ HEADER ████ -->
@@ -1551,6 +1665,10 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
     </div>
     <pkc-nav class="pkc-nav-links">
       <a href="#menu">Menu</a>
+      <a href="#about">Recipes</a>
+      <a href="#menu">Locations</a>
+      <a href="#menu">About Kismet</a>
+      <a href="#menu">Contact Us</a>
     </pkc-nav>
   </div>
 
@@ -1564,6 +1682,10 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
   </div>
 
   <div class="pkc-header-right">
+    <!-- Mobile search icon (only shown on mobile) -->
+    <button class="pkc-mobile-search-btn" onclick="openMobileSearch()" title="Search">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    </button>
     <!-- Favourites -->
     <button class="pkc-icon-btn" id="pkc-fav-btn" title="Favourites" onclick="toggleFavPanel()">
       <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -1596,18 +1718,23 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 16 16"><path d="M2 2l12 12M14 2L2 14"/></svg>
   </button>
   <pkc-nav class="pkc-mobile-nav-links">
-    <a href="#menu" onclick="toggleMobileNav()">Menu <span style="opacity:0.4;">›</span></a>
-    <a href="javascript:void(0)" onclick="toggleMobileNav();openCart()">Cart <span style="opacity:0.4;">›</span></a>
+    <a href="#menu" onclick="toggleMobileNav()">Menu <span style="opacity:0.4; font-weight: 400;">›</span></a>
+    <a href="#menu" onclick="toggleMobileNav()">Recipes <span style="opacity:0.4; font-weight: 400;">›</span></a>
+    <a href="#menu" onclick="toggleMobileNav()">Locations <span style="opacity:0.4; font-weight: 400;">›</span></a>
+    <a href="#menu" onclick="toggleMobileNav()">About Kismet<span style="opacity:0.4; font-weight: 400;">›</span></a>
+    <a href="#menu" onclick="toggleMobileNav()">Contact Us <span style="opacity:0.4; font-weight: 400;">›</span></a>
+    <a href="javascript:void(0)" onclick="toggleMobileNav();openCart()">Cart <span style="opacity:0.4; font-weight: 400;">›</span></a>
   </pkc-nav>
   <div class="pkc-mobile-nav-footer">
     <p>Crafted with soul since 2018</p>
   </div>
 </div>
 
+
 <!-- ████ HERO ████ -->
 <pkc-section class="hero" id="home">
   <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1604909052868-d25b0ec51df1?auto=format&fit=crop&w=1400&q=90" alt="Fish and chips">
+    <img src="https://images.pexels.com/photos/13699080/pexels-photo-13699080.jpeg" alt="Fish and chips">
   </div>
   <div class="container">
     <div class="hero-content">
@@ -1671,7 +1798,6 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
     <div class="crns-container">
         
         <div class="crns-text-col">
-            <span class="crns-eyebrow">FLAVOR ON DEMAND</span>
             <h1 class="crns-headline">The Best Tastes, Delivered to You.</h1>
             
             <div class="crns-feature-list">
@@ -1719,7 +1845,7 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
     --crns-text-main: #000000;    
     --crns-text-muted: #6b7280;   
     --crns-white: #ffffff;
-    --crns-font: 'Sodo Sans', sans-serif;
+    --crns-font: 'flame', sans-serif;
     
     background-color: #ffffff;
     font-family: var(--crns-font);
@@ -1748,23 +1874,12 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
     min-width: 300px;
 }
 
-.crns-eyebrow {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-    color: #b8860b; /* Sophisticated gold-tone for restaurant feel */
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 24px;
-}
-
 .crns-headline {
     font-size: 62px;
     line-height: 1.0;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--crns-text-main);
     margin: 0 0 35px 0;
-    letter-spacing: -0.05em;
 }
 
 .crns-feature-list {
@@ -1778,10 +1893,10 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
 }
 
 .crns-bold {
-    font-weight: 700;
+    font-weight: 500;
     color: var(--crns-text-main);
     display: block;
-    font-size: 20px;
+    font-size: 20px;letter-spacing: 0.02em;
 }
 
 .crns-muted {
@@ -1824,7 +1939,7 @@ pkc-footer{background:var(--text-dark);color:rgba(255,255,255,0.55);padding:60px
     height: 610px;
     background: #000;
     border-radius: 45px;
-    border: 12px solid #000;
+    border: 7px solid #000;
     box-shadow: 0 60px 120px -30px rgba(0,0,0,0.3);
     position: relative;
     overflow: hidden;
@@ -2314,29 +2429,29 @@ const CATS=[
 ];
 
 const products=[
-  {id:1,name:"Classic Battered Hake",cat:"fish",price:89,desc:"Golden crispy batter, thick-cut chips & tartar sauce",img:"https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?auto=format&fit=crop&w=600&q=85",badge:"popular"},
+  {id:1,name:"Classic Battered Hake",cat:"fish",price:89,desc:"Golden crispy batter, thick-cut chips & tartar sauce",img:"https://images.unsplash.com/photo-1680678605629-278edc5fe99d?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",badge:"popular"},
   {id:2,name:"Grilled Linefish of the Day",cat:"fish",price:109,desc:"Fresh daily catch, lemon butter, served with chips",img:"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=85",badge:"new"},
-  {id:3,name:"Fish Fillet Basket",cat:"fish",price:95,desc:"Three crispy fillets with seasoned chips & coleslaw",img:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=85"},
-  {id:4,name:"Calamari & Chips",cat:"fish",price:99,desc:"Tender rings of calamari, crumbed & fried golden",img:"https://images.unsplash.com/photo-1615361200141-f45040f367be?auto=format&fit=crop&w=600&q=85",badge:"popular"},
+  {id:3,name:"Fish Fillet Basket",cat:"fish",price:95,desc:"Three crispy fillets with seasoned chips & coleslaw",img:"https://images.unsplash.com/photo-1700760933394-976f1d27dff2?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
+  {id:4,name:"Calamari & Chips",cat:"fish",price:99,desc:"Tender rings of calamari, crumbed & fried golden",img:"https://images.unsplash.com/photo-1734771219838-61863137b117?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",badge:"popular"},
   {id:5,name:"Prawn Basket",cat:"fish",price:135,desc:"Juicy prawns in beer batter with chips & aioli",img:"https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=600&q=85"},
   {id:6,name:"Fish Cake & Chips",cat:"fish",price:79,desc:"House-made fish cakes, mushy peas & chips",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=85"},
   {id:7,name:"Chip Roll (Slap Chips)",cat:"fish",price:35,desc:"Thick-cut chips in a soft roll with tomato sauce",img:"https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=600&q=85"},
-  {id:8,name:"Crispy Fish Burger",cat:"burgers",price:85,desc:"Beer-battered fillet, slaw, gherkins & house sauce",img:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=85",badge:"popular"},
+  {id:8,name:"Crispy Fish Burger",cat:"burgers",price:85,desc:"Beer-battered fillet, slaw, gherkins & house sauce",img:"https://images.unsplash.com/photo-1643133277733-66a476f7f32e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",badge:"popular"},
   {id:9,name:"Prawn Wrap",cat:"burgers",price:95,desc:"Panko prawns, avocado, lettuce & chilli mayo wrap",img:"https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=600&q=85",badge:"new"},
-  {id:10,name:"Double Beef Smashburger",cat:"burgers",price:99,desc:"Two smashed patties, cheese, pickles & special sauce",img:"https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=85"},
-  {id:11,name:"Calamari Wrap",cat:"burgers",price:79,desc:"Fried calamari, tzatziki, cucumber & fresh herbs",img:"https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=600&q=85"},
+  {id:10,name:"Double Beef Smashburger",cat:"burgers",price:99,desc:"Two smashed patties, cheese, pickles & special sauce",img:"https://images.unsplash.com/photo-1696935302123-372d54ab941e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
+  {id:11,name:"Calamari Wrap",cat:"burgers",price:79,desc:"Fried calamari, tzatziki, cucumber & fresh herbs",img:"https://images.unsplash.com/photo-1655895176036-bf1a11326e5c?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
   {id:12,name:"Classic Greek Salad",cat:"salads",price:65,desc:"Feta, olives, cucumber, tomato & red onion",img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=85",badge:"popular"},
   {id:13,name:"Coleslaw",cat:"salads",price:35,desc:"Creamy house-made coleslaw with red cabbage",img:"https://images.unsplash.com/photo-1607532941433-304659e8198a?auto=format&fit=crop&w=600&q=85"},
   {id:14,name:"Garden Side Salad",cat:"salads",price:45,desc:"Mixed greens, cherry tomatoes & balsamic dressing",img:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=85"},
-  {id:15,name:"Mushy Peas",cat:"salads",price:28,desc:"Classic British side, buttered & seasoned",img:"https://images.unsplash.com/photo-1574170609396-a7d66e08e8fa?auto=format&fit=crop&w=600&q=85",badge:"new"},
+  {id:15,name:"Mushy Peas",cat:"salads",price:28,desc:"Classic British side, buttered & seasoned",img:"https://images.unsplash.com/photo-1595016111459-799a195e7452?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",badge:"new"},
   {id:16,name:"Corn on the Cob",cat:"salads",price:32,desc:"Grilled corn, herb butter & sea salt",img:"https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=600&q=85"},
   {id:17,name:"Family Fish Platter",cat:"platters",price:299,desc:"4 fillets, calamari rings, prawns, chips & 4 sides",img:"https://images.unsplash.com/photo-1559737558-2f5a35f4523b?auto=format&fit=crop&w=600&q=85",badge:"popular"},
-  {id:18,name:"Mixed Seafood Platter",cat:"platters",price:349,desc:"Grilled & fried selection for two with all the sides",img:"https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600&q=85"},
-  {id:19,name:"Chip Bucket (1kg)",cat:"platters",price:79,desc:"Seasoned thick-cut chips for the whole table",img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=85",badge:"popular"},
-  {id:20,name:"Tartar Sauce",cat:"sauces",price:18,desc:"Classic creamy tartar with capers & dill",img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=85",badge:"popular"},
-  {id:21,name:"Peri-Peri Dip",cat:"sauces",price:18,desc:"Smoky, fiery peri-peri chilli sauce",img:"https://images.unsplash.com/photo-1574119573065-b0e3c0c34fba?auto=format&fit=crop&w=600&q=85"},
-  {id:22,name:"Garlic Aioli",cat:"sauces",price:18,desc:"Roasted garlic whipped aioli, smooth & rich",img:"https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=600&q=85"},
-  {id:23,name:"Sweet Chilli Sauce",cat:"sauces",price:18,desc:"House-made sweet chilli for dipping",img:"https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&w=600&q=85",badge:"new"},
+  {id:18,name:"Mixed Seafood Platter",cat:"platters",price:349,desc:"Grilled & fried selection for two with all the sides",img:"https://images.unsplash.com/photo-1727198826762-8a2bd0cb107b?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
+  {id:19,name:"Chip Bucket (1kg)",cat:"platters",price:79,desc:"Seasoned thick-cut chips for the whole table",img:"https://images.unsplash.com/photo-1630431341973-02e1b662ec35?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",badge:"popular"},
+  {id:20,name:"Tartar Sauce",cat:"sauces",price:18,desc:"Classic creamy tartar with capers & dill",img:"https://images.unsplash.com/photo-1734772257288-d53770c7707f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",badge:"popular"},
+  {id:21,name:"Peri-Peri Dip",cat:"sauces",price:18,desc:"Smoky, fiery peri-peri chilli sauce",img:"https://images.pexels.com/photos/12339111/pexels-photo-12339111.jpeg"},
+  {id:22,name:"Garlic Aioli",cat:"sauces",price:18,desc:"Roasted garlic whipped aioli, smooth & rich",img:"https://images.pexels.com/photos/5848055/pexels-photo-5848055.jpeg"},
+  {id:23,name:"Sweet Chilli Sauce",cat:"sauces",price:18,desc:"House-made sweet chilli for dipping",img:"https://images.pexels.com/photos/33980002/pexels-photo-33980002.jpeg",badge:"new"},
   {id:24,name:"Coca-Cola",cat:"drinks",price:28,desc:"Ice-cold 330ml can",img:"https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=600&q=85"},
   {id:25,name:"Still Water",cat:"drinks",price:18,desc:"500ml spring water",img:"https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=600&q=85"},
   {id:26,name:"Fresh Lemonade",cat:"drinks",price:35,desc:"Freshly squeezed with mint & ice",img:"https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=600&q=85",badge:"popular"},
@@ -2375,7 +2490,7 @@ function renderMenu(){
       <div class="category-group" id="cat-${catInfo.id}">
         <div class="category-group-header">
           <div class="cat-group-title-wrap">
-            <div class="cat-group-icon">${catInfo.icon||''}</div>
+            
             <div class="cat-group-title">${catInfo.label}</div>
           </div>
         </div>
@@ -2840,37 +2955,103 @@ function toggleMobileNav(){
 }
 
 /* ══════════════════════
-   HEADER SCROLL
+   MOBILE SEARCH
 ══════════════════════ */
+function openMobileSearch(){
+  document.getElementById('pkc-mobile-search-overlay').classList.add('open');
+  document.getElementById('pkc-mobile-search-panel').classList.add('open');
+  document.getElementById('pkc-mobile-search-dim').classList.add('open');
+  setTimeout(()=>{
+    const inp=document.getElementById('pkc-mobile-search-input');
+    if(inp){inp.focus();inp.value='';}
+    document.getElementById('pkc-mobile-search-panel-inner').innerHTML=
+      '<div class="search-empty"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><p>Start typing to search</p><span>Fish, chips, burgers &amp; more…</span></div>';
+  },60);
+}
+function closeMobileSearch(){
+  document.getElementById('pkc-mobile-search-overlay').classList.remove('open');
+  document.getElementById('pkc-mobile-search-panel').classList.remove('open');
+  document.getElementById('pkc-mobile-search-dim').classList.remove('open');
+  const inp=document.getElementById('pkc-mobile-search-input');
+  if(inp){inp.value='';inp.blur();}
+}
+function handleMobileSearch(query){
+  const inner=document.getElementById('pkc-mobile-search-panel-inner');
+  if(!inner)return;
+  const q=query.trim().toLowerCase();
+  if(!q){
+    inner.innerHTML='<div class="search-empty"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><p>Start typing to search</p><span>Fish, chips, burgers &amp; more…</span></div>';
+    return;
+  }
+  const matches=products.filter(p=>
+    p.name.toLowerCase().includes(q)||
+    p.desc.toLowerCase().includes(q)||
+    (CATS.find(c=>c.id===p.cat)||{}).label.toLowerCase().includes(q)
+  ).slice(0,12);
+  if(!matches.length){
+    inner.innerHTML='<div class="search-empty"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><p>No results for "'+query+'"</p><span>Try a different search term</span></div>';
+    return;
+  }
+  inner.innerHTML=matches.map(p=>{
+    const cat=(CATS.find(c=>c.id===p.cat)||{}).label||'';
+    return `<div class="pkc-search-result-item" onclick="closeMobileSearch();openOrderModal(${p.id})">
+      <img class="pkc-search-result-img" src="${p.img}" alt="${p.name}" loading="lazy">
+      <div class="pkc-search-result-info">
+        <div class="pkc-search-result-name">${p.name}</div>
+        <div class="pkc-search-result-cat">${cat}</div>
+      </div>
+      <span class="pkc-search-result-price">R${p.price}</span>
+    </div>`;
+  }).join('');
+}
 let lastScrollY=0;
-window.addEventListener('scroll',()=>{
-  const scrollY=window.scrollY;
+let scrollTicking=false;
+function handleHeaderScroll(){
+  const page=document.getElementById('pkc-page');
+  const scrollY=page?page.scrollTop:window.scrollY;
   const header=document.getElementById('pkc-main-header');
-  // Hide on scroll down, show on scroll up
+  if(!header)return;
+  // Hide when scrolling DOWN past 80px; show when scrolling UP
   if(scrollY>lastScrollY&&scrollY>80){
     header.classList.add('hidden');
   }else{
     header.classList.remove('hidden');
   }
   lastScrollY=scrollY;
-  // Scrolled shadow state
   header.classList.toggle('scrolled',scrollY>60);
-  // Update mobile filter bar top to match header height
+  // Update mobile filter bar top
   const bar=document.getElementById('pkc-mobile-filter-bar');
   if(bar&&window.innerWidth<=900){
-    const headerH=header.offsetHeight;
-    bar.style.top=headerH+'px';
+    bar.style.top=header.offsetHeight+'px';
   }
   // Track active category on scroll (mobile)
   if(window.innerWidth<=900){
     const cats=['fish','burgers','salads','platters','sauces','drinks'];
-    let active='all';
     for(const cat of cats){
       const el=document.getElementById('cat-'+cat);
       if(!el)continue;
-      const rect=el.getBoundingClientRect();
-      if(rect.top<=160){active=cat;}
+      if(el.getBoundingClientRect().top<=160){
+        // active cat tracking (no sidebar to update, kept for future use)
+      }
     }
+  }
+  scrollTicking=false;
+}
+// Attach to pkc-page (the real scroll container)
+const _page=document.getElementById('pkc-page');
+if(_page){
+  _page.addEventListener('scroll',()=>{
+    if(!scrollTicking){
+      requestAnimationFrame(handleHeaderScroll);
+      scrollTicking=true;
+    }
+  },{passive:true});
+}
+// Fallback for window scroll (in case pkc-page isn't the scroller)
+window.addEventListener('scroll',()=>{
+  if(!scrollTicking){
+    requestAnimationFrame(handleHeaderScroll);
+    scrollTicking=true;
   }
 },{passive:true});
 
@@ -2909,9 +3090,9 @@ window.addEventListener('DOMContentLoaded',()=>{
   if(track){track.innerHTML+=track.innerHTML;}
 });
 
-
-
-
+/* ══════════════════════
+   FOOTER ACCORDION
+═════════�
 
 
 
